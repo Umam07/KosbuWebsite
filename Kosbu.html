@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOSBU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-gradient {
+          background: linear-gradient(135deg, #578FCA 0%, #3674B5 100%);	
+        }
+        
+        /* Enhanced Hero Section Styles */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+        
+        .hero-bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            filter: blur(60px);
+        }
+        
+        .shape-1 {
+            width: 600px;
+            height: 600px;
+            top: -300px;
+            left: -300px;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            right: 20%;
+            animation: float 12s ease-in-out infinite;
+        }
+        
+        .hero-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.2);
+        }
+        
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.3);
+        }
+        
+        .hero-btn:active {
+            transform: translateY(0);
+        }
+        
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .hero-btn:hover::before {
+            left: 100%;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-down::after {
+            content: 'Scroll Ke Bawah';
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+        
+        .member-card {
+            transition: all 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .member-card:nth-child(1) { animation-delay: 0.1s; }
+        .member-card:nth-child(2) { animation-delay: 0.3s; }
+        .member-card:nth-child(3) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .member-image {
+            transition: all 0.5s ease;
+            transform: scale(1);
+        }
+        
+        .member-card:hover .member-image {
+            transform: scale(1.1);
+        }
+        
+        .member-social {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover .member-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .game-tag {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .game-tag:hover {
+            transform: scale(1.05);
+            background-color: #bfdbfe;
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .instagram-post {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .instagram-post:hover {
+            transform: scale(1.03);
+        }
+        
+        .instagram-post:hover .instagram-overlay {
+            opacity: 1;
+        }
+        
+        .instagram-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .instagram-gradient {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Moments Section Styles */
+        .moment-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .moment-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .moment-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .moment-card:hover .moment-image {
+            transform: scale(1.1);
+        }
+        
+        .moment-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .moment-card:hover .moment-overlay {
+            opacity: 1;
+        }
+        
+        .moment-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 10;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: scale(1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-1 {
+            grid-column: 1 / span 6;
+            grid-row: 1 / span 3;
+        }
+        
+        .gallery-item-2 {
+            grid-column: 7 / span 6;
+            grid-row: 1 / span 2;
+        }
+        
+        .gallery-item-3 {
+            grid-column: 7 / span 3;
+            grid-row: 3 / span 2;
+        }
+        
+        .gallery-item-4 {
+            grid-column: 10 / span 3;
+            grid-row: 3 / span 2;
+        }
+        
+        .gallery-item-5 {
+            grid-column: 1 / span 3;
+            grid-row: 4 / span 3;
+        }
+        
+        .gallery-item-6 {
+            grid-column: 4 / span 3;
+            grid-row: 4 / span 3;
+        }
+        
+        .gallery-item-7 {
+            grid-column: 7 / span 6;
+            grid-row: 5 / span 2;
+        }
+        
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .video-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .video-icon {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 1;
+        }
+        
+        /* Floating animation for hero elements */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Button hover effects */
+        .btn-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-hover:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Navigation underline animation */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Loading animation */
+        .loading-dots {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            margin: 0 2px;
+            background-color: currentColor;
+            border-radius: 50%;
+            display: inline-block;
+            animation: loading-dots 1.4s infinite ease-in-out both;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes loading-dots {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Background particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+        
+        .particles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+        
+        .particles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+        
+        .particles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+        
+        .particles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+        
+        .particles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+        
+        .particles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+        
+        .particles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+        
+        .particles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+        
+        .particles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+        
+        .particles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+        
+        /* Fixed footer animation */
+        .footer-content {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        
+        /* New animations for members section */
+        .members-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .members-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+        
+        .member-image-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .member-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(59, 130, 246, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .member-card:hover .member-image-overlay {
+            opacity: 1;
+        }
+        
+        .member-name {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .member-name::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .member-card:hover .member-name::after {
+            width: 100%;
+        }
+        
+        /* Section title animation */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -8px;
+            left: 25%;
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.5s ease;
+        }
+        
+        .section-title.in-view::after {
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="#" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-gray-500 text-2xl">KOSBU</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="nav-link py-4 px-2 text-blue-600 font-semibold border-b-4 border-blue-600">Beranda</a>
+                    <a href="#members" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-600 transition duration-300">Anggota</a>
+                    <a href="#moments" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-600 transition duration-300">Momen</a>
+                    <a href="#instagram" class="nav-link py-4 px-2 text-gray-500 font-semibold hover:text-blue-600 transition duration-300">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="hero-gradient text-white hero-section">
+        <!-- Background shapes -->
+        <div class="hero-bg-shape shape-1"></div>
+        <div class="hero-bg-shape shape-2"></div>
+        <div class="hero-bg-shape shape-3"></div>
+        
+        <!-- Particles -->
+        <div class="particles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </div>
+        
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                Selamat Datang di <span class="text-yellow-300">KOSBU</span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+                Komunitas persahabatan yang tumbuh bersama, bermain bersama, dan menciptakan kenangan tak terlupakan
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="500">
+                <a href="#members" class="hero-btn bg-white text-blue-600 font-bold rounded-full py-4 px-8 uppercase tracking-wider hover:bg-gray-100 transition duration-300">
+                    Kenali Anggota Kami
+                </a>
+                <a href="#moments" class="hero-btn bg-transparent border-2 border-white text-white font-bold rounded-full py-4 px-8 uppercase tracking-wider hover:bg-white hover:text-blue-600 transition duration-300">
+                    Jelajahi Momen
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="py-16 bg-white members-section">
+        <div class="members-bg-pattern"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-4 section-title">Anggota Kami</h2>
+                <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">Kenali orang-orang luar biasa yang membuat KOSBU istimewa. Setiap anggota membawa bakat dan energi unik untuk kelompok kami.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Member 1 - Muhammad Syafi'ul Umam -->
+                <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-image-container relative pb-48 overflow-hidden">
+                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Muhammad Syafi'ul Umam">
+                        <div class="member-image-overlay"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Muhammad Syafi'ul Umam</h3>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="fas fa-birthday-cake mr-2 text-blue-500"></i>
+                                    <span>Lahir di Sidoarjo, 7 Desember 2003</span>
+                                </div>
+                            </div>
+                            <a href="https://instagram.com" target="_blank" class="text-blue-600 hover:text-blue-800 transition duration-300 social-icon member-social">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-4">Pecinta game KOSBU yang selalu membawa energi positif ke setiap pertemuan.</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-gamepad mr-2 text-blue-500"></i>
+                                Game Favorit
+                            </h4>
+                            <div class="flex flex-wrap">
+                                <span class="game-tag">Valorant</span>
+                                <span class="game-tag">Delta Force</span>
+                                <span class="game-tag">Left 4 Dead 2</span>
+                                <span class="game-tag">Roblox</span>
+                                <span class="game-tag">eFootball</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center mt-6">
+                            <a href="#" class="btn-hover text-blue-600 font-semibold hover:text-blue-800 transition duration-300 flex items-center">
+                                Lihat Profil Lengkap
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 2 -->
+                <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-image-container relative pb-48 overflow-hidden">
+                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Member 2">
+                        <div class="member-image-overlay"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Andi Pratama</h3>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="fas fa-birthday-cake mr-2 text-blue-500"></i>
+                                    <span>Lahir di Jakarta, 15 Mei 2002</span>
+                                </div>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300 social-icon member-social">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-4">Otak kreatif di balik banyak acara dan kegiatan KOSBU yang berkesan.</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-gamepad mr-2 text-blue-500"></i>
+                                Game Favorit
+                            </h4>
+                            <div class="flex flex-wrap">
+                                <span class="game-tag">PUBG Mobile</span>
+                                <span class="game-tag">Call of Duty</span>
+                                <span class="game-tag">Genshin Impact</span>
+                                <span class="game-tag">Among Us</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center mt-6">
+                            <a href="#" class="btn-hover text-blue-600 font-semibold hover:text-blue-800 transition duration-300 flex items-center">
+                                Lihat Profil Lengkap
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Member 3 -->
+                <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-image-container relative pb-48 overflow-hidden">
+                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Member 3">
+                        <div class="member-image-overlay"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Siti Rahmawati</h3>
+                                <div class="flex items-center text-gray-600 mb-4">
+                                    <i class="fas fa-birthday-cake mr-2 text-blue-500"></i>
+                                    <span>Lahir di Bandung, 22 Agustus 2003</span>
+                                </div>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300 social-icon member-social">
+                                <i class="fab fa-instagram text-2xl"></i>
+                            </a>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-4">Sang pengorganisir yang menjaga acara KOSBU berjalan lancar dan semua orang bahagia.</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-gamepad mr-2 text-blue-500"></i>
+                                Game Favorit
+                            </h4>
+                            <div class="flex flex-wrap">
+                                <span class="game-tag">Stardew Valley</span>
+                                <span class="game-tag">Animal Crossing</span>
+                                <span class="game-tag">Minecraft</span>
+                                <span class="game-tag">Candy Crush</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center mt-6">
+                            <a href="#" class="btn-hover text-blue-600 font-semibold hover:text-blue-800 transition duration-300 flex items-center">
+                                Lihat Profil Lengkap
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#" class="btn-hover bg-blue-600 text-white font-bold rounded-full py-3 px-8 shadow-lg uppercase tracking-wider hover:bg-blue-700 transition duration-300 inline-block">
+                    Lihat Semua Anggota
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moments Section -->
+    <section id="moments" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-center text-gray-800 mb-4">Momen Tak Terlupakan Kami</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto text-center">Nikmati kembali tawa, petualangan, dan waktu spesial yang kami bagi bersama sebagai KOSBU</p>
+            </div>
+            
+            <!-- Featured Moment -->
+            <div class="moment-card bg-white rounded-xl overflow-hidden shadow-lg mb-16" data-aos="zoom-in">
+                <div class="relative h-96 overflow-hidden">
+                    <div class="moment-badge flex items-center">
+                        <i class="fas fa-star text-yellow-400 mr-1"></i>
+                        <span>Momen Unggulan</span>
+                    </div>
+                    <img class="moment-image w-full h-full object-cover" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Featured Moment">
+                    <div class="moment-overlay absolute inset-0 flex items-end p-8">
+                        <div>
+                            <h3 class="text-3xl font-bold text-white mb-2">Gathering Tahunan KOSBU 2023</h3>
+                            <p class="text-gray-200 mb-4">Acara terbesar tahunan kami dengan semua anggota merayakan persahabatan kami</p>
+                            <div class="flex items-center text-gray-200">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span class="mr-4">15 Desember 2023</span>
+                                <i class="fas fa-users mr-2"></i>
+                                <span>24 Anggota Hadir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Moments Gallery -->
+            <div class="gallery-grid h-[800px] mb-16" data-aos="fade-up">
+                <div class="gallery-item gallery-item-1">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Liburan Pantai">
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Liburan Pantai</h3>
+                        <p>Perjalanan musim panas ke Bali</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item gallery-item-2">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Belajar Bersama">
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Belajar Bersama</h3>
+                        <p>Persiapan ujian akhir</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item gallery-item-3">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Pesta Ulang Tahun">
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Kejutan Ulang Tahun</h3>
+                        <p>Merayakan ulang tahun Umam</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item gallery-item-4">
+                    <div class="relative h-full w-full">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Rapat Tim">
+                        <div class="video-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Sesi Perencanaan</h3>
+                        <p>Video highlight</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item gallery-item-5">
+                    <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Malam Game">
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Malam Game</h3>
+                        <p>Turnamen Valorant</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item gallery-item-6">
+                    <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Piknik">
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Pendakian Gunung</h3>
+                        <p>Petualangan akhir pekan</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item gallery-item-7">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Makan Malam">
+                    <div class="gallery-item-caption">
+                        <h3 class="font-bold text-lg">Makan Malam Anniversary</h3>
+                        <p>2 tahun KOSBU</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Moments Timeline -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-8" data-aos="fade-up">Linimasa KOSBU</h3>
+                
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 h-full w-1 bg-blue-200 transform -translate-x-1/2"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="mb-12" data-aos="fade-right">
+                        <div class="flex flex-col md:flex-row items-center justify-between mb-4">
+                            <div class="w-full md:w-5/12 mb-4 md:mb-0">
+                                <div class="moment-card bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-4 h-4 rounded-full bg-blue-600 mr-3"></div>
+                                        <h4 class="font-bold text-lg">KOSBU Didirikan</h4>
+                                    </div>
+                                    <p class="text-gray-600">Komunitas kami resmi dibentuk dengan 5 anggota pendiri</p>
+                                    <div class="flex items-center mt-3 text-sm text-gray-500">
+                                        <i class="fas fa-calendar-alt mr-2"></i>
+                                        <span>Januari 2021</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-5/12">
+                                <img src="https://images.unsplash.com/photo-1541252260730-0412e8e2108e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pendirian" class="w-full h-48 object-cover rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12" data-aos="fade-left">
+                        <div class="flex flex-col md:flex-row-reverse items-center justify-between mb-4">
+                            <div class="w-full md:w-5/12 mb-4 md:mb-0">
+                                <div class="moment-card bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-4 h-4 rounded-full bg-blue-600 mr-3"></div>
+                                        <h4 class="font-bold text-lg">Gathering Pertama</h4>
+                                    </div>
+                                    <p class="text-gray-600">Semua 15 anggota bertemu untuk pertama kalinya di Bandung</p>
+                                    <div class="flex items-center mt-3 text-sm text-gray-500">
+                                        <i class="fas fa-calendar-alt mr-2"></i>
+                                        <span>Juli 2021</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-5/12">
+                                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="First Gathering" class="w-full h-48 object-cover rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-12" data-aos="fade-right">
+                        <div class="flex flex-col md:flex-row items-center justify-between mb-4">
+                            <div class="w-full md:w-5/12 mb-4 md:mb-0">
+                                <div class="moment-card bg-white p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-4 h-4 rounded-full bg-blue-600 mr-3"></div>
+                                        <h4 class="font-bold text-lg">Liburan ke Pantai</h4>
+                                    </div>
+                                    <p class="text-gray-600">Liburan 3 hari yang berkesan ke Pantai Anyer</p>
+                                    <div class="flex items-center mt-3 text-sm text-gray-500">
+                                        <i class="fas fa-calendar-alt mr-2"></i>
+                                        <span>Desember 2021</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-5/12">
+                                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Beach Trip" class="w-full h-48 object-cover rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="zoom-in">
+                <a href="#" class="btn-hover bg-blue-600 text-white font-bold rounded-full py-3 px-8 shadow-lg uppercase tracking-wider hover:bg-blue-700 transition duration-300 inline-block">
+                    Lihat Semua Momen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section id="instagram" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Bergabunglah dengan Komunitas Instagram Kami</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ikuti kami untuk update harian, momen behind-the-scenes, dan konten eksklusif!</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between bg-gradient-to-r from-[#5EABD6] to-[#3b82f6] rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up">
+                <div class="w-full lg:w-1/2 p-10 text-white">
+                    <div class="flex items-center mb-6">
+                        <i class="fab fa-instagram text-5xl mr-4"></i>
+                        <div>
+                            <h3 class="text-3xl font-bold">@kosbu_circle</h3>
+                            <p class="text-blue-100">Instagram Resmi KOSBU</p>
+                        </div>
+                    </div>
+                    
+                    <p class="mb-8 text-blue-100">Kami berbagi momen terbaik, acara, dan kegiatan seru sehari-hari. Jangan sampai ketinggalan!</p>
+                    
+                    <div class="flex items-center mb-8">
+                        <div class="mr-6 text-center">
+                            <div class="text-3xl font-bold">1.2K</div>
+                            <div class="text-sm">Pengikut</div>
+                        </div>
+                        <div class="mr-6 text-center">
+                            <div class="text-3xl font-bold">356</div>
+                            <div class="text-sm">Mengikuti</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold">128</div>
+                            <div class="text-sm">Postingan</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://instagram.com" target="_blank" class="pulse inline-block bg-white text-[#5EABD6] font-bold rounded-full py-4 px-10 shadow-lg uppercase tracking-wider hover:bg-gray-100 transition duration-300 text-center">
+                        <i class="fab fa-instagram mr-2"></i> Ikuti Kami Sekarang
+                    </a>
+                </div>
+                
+                <div class="w-full lg:w-1/2 p-6">
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="instagram-post aspect-square">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Instagram post">
+                            <div class="instagram-overlay">
+                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
+                                <span class="text-white font-bold">248</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post aspect-square">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Instagram post">
+                            <div class="instagram-overlay">
+                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
+                                <span class="text-white font-bold">312</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post aspect-square">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Instagram post">
+                            <div class="instagram-overlay">
+                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
+                                <span class="text-white font-bold">189</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post aspect-square">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Instagram post">
+                            <div class="instagram-overlay">
+                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
+                                <span class="text-white font-bold">276</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post aspect-square">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Instagram post">
+                            <div class="instagram-overlay">
+                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
+                                <span class="text-white font-bold">154</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post aspect-square bg-black text-white flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <i class="fab fa-instagram text-4xl mb-2"></i>
+                                <p class="font-bold">Lebih Banyak di Instagram</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">Tag kami di momen KOSBU-mu!</h3>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Gunakan #KOSBUCircle di postinganmu untuk berkesempatan ditampilkan di halaman kami</p>
+                <a href="https://instagram.com/explore/tags/kosbucircle" target="_blank" class="btn-hover bg-gray-800 text-white font-bold rounded-full py-3 px-8 shadow-lg uppercase tracking-wider hover:bg-gray-700 transition duration-300 inline-block">
+                    #KOSBUCircle
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 footer-content">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">KOSBU Circle</h3>
+                    <p class="text-gray-400 mt-2">Persahabatan yang abadi</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 KOSBU Circle. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: false,
+            mirror: false
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Remove all active classes
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('text-blue-600', 'border-b-4', 'border-blue-600');
+                    link.classList.add('text-gray-500');
+                });
+                
+                // Add active class to clicked link
+                this.classList.remove('text-gray-500');
+                this.classList.add('text-blue-600', 'border-b-4', 'border-blue-600');
+                
+                // Scroll to target
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const id = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('text-blue-600', 'border-b-4', 'border-blue-600');
+                        link.classList.add('text-gray-500');
+                    });
+                    
+                    const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.remove('text-gray-500');
+                        activeLink.classList.add('text-blue-600', 'border-b-4', 'border-blue-600');
+                    }
+                }
+            });
+            
+            // Animate section title underline when in view
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach(title => {
+                const rect = title.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    title.classList.add('in-view');
+                }
+            });
+        });
+        
+        // Add loading animation to buttons
+        document.querySelectorAll('.btn-hover').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (!this.getAttribute('href') || this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<span class="loading-dots"><span></span><span></span><span></span></span>';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 1500);
+                }
+            });
+        });
+        
+        // Initialize section title animations
+        document.querySelectorAll('.section-title').forEach(title => {
+            // Add observer to animate when in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        title.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            observer.observe(title);
+        });
+    </script>
+</body>
+</html>
