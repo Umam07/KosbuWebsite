@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script async defer src="//www.instagram.com/embed.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
@@ -696,6 +697,298 @@
         .section-title.in-view::after {
             transform: scaleX(1);
         }
+
+        /* Enhanced Instagram Section */
+        .instagram-section-container {
+            background: linear-gradient(135deg, #5EABD6 0%, #3b82f6 100%);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .instagram-section-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
+            z-index: 0;
+        }
+
+        .instagram-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .instagram-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            margin-right: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .instagram-logo {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram-username {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .instagram-bio {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+
+        .instagram-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            min-width: 120px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .instagram-feed-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .instagram-post-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .instagram-post-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 1/1;
+            background: #f5f5f5;
+        }
+
+        .instagram-post-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram-post-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .instagram-post-item:hover .instagram-post-image {
+            transform: scale(1.1);
+        }
+
+        .instagram-post-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .instagram-post-item:hover .instagram-post-overlay {
+            opacity: 1;
+        }
+
+        .instagram-post-link {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .instagram-post-link:hover {
+            transform: scale(1.2);
+        }
+
+        .instagram-cta {
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .instagram-follow-btn {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            color: #3b82f6;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .instagram-follow-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            background: #f8f9fa;
+        }
+
+        .instagram-follow-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .instagram-error {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            color: #333;
+        }
+
+        .instagram-error-icon {
+            font-size: 3rem;
+            color: #ef4444;
+            margin-bottom: 15px;
+        }
+
+        .instagram-error a {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        .instagram-loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .instagram-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .instagram-tag:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .instagram-post-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            .instagram-stats {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .stat-item {
+                min-width: calc(50% - 30px);
+                padding: 10px 15px;
+            }
+            
+            .instagram-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .instagram-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -773,10 +1066,10 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Member 1 - Muhammad Syafi'ul Umam -->
+                <!-- Member 1-->
                 <div class="member-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="member-image-container relative pb-48 overflow-hidden">
-                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Muhammad Syafi'ul Umam">
+                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://res.cloudinary.com/dr57ribr5/image/upload/v1751428375/IMG_20230526_114827_je7c6w.jpg" alt="Muhammad Syafi'ul Umam">
                         <div class="member-image-overlay"></div>
                     </div>
                     <div class="p-6">
@@ -793,7 +1086,7 @@
                             </a>
                         </div>
                         
-                        <p class="text-gray-600 mb-4">Pecinta game KOSBU yang selalu membawa energi positif ke setiap pertemuan.</p>
+                        <p class="text-gray-600 mb-4">Seorang yang bermain game.</p>
                         
                         <div class="mb-4">
                             <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
@@ -821,16 +1114,16 @@
                 <!-- Member 2 -->
                 <div class="member-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="member-image-container relative pb-48 overflow-hidden">
-                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Member 2">
+                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://res.cloudinary.com/dr57ribr5/image/upload/v1751454574/IMG_20230509_102454_gwyyhv.jpg" alt="Member 2">
                         <div class="member-image-overlay"></div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Andi Pratama</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Rafi Daniswara</h3>
                                 <div class="flex items-center text-gray-600 mb-4">
                                     <i class="fas fa-birthday-cake mr-2 text-blue-500"></i>
-                                    <span>Lahir di Jakarta, 15 Mei 2002</span>
+                                    <span>Lahir di Jakarta, 15 Mei 2004</span>
                                 </div>
                             </div>
                             <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300 social-icon member-social">
@@ -846,10 +1139,9 @@
                                 Game Favorit
                             </h4>
                             <div class="flex flex-wrap">
-                                <span class="game-tag">PUBG Mobile</span>
-                                <span class="game-tag">Call of Duty</span>
-                                <span class="game-tag">Genshin Impact</span>
-                                <span class="game-tag">Among Us</span>
+                                <span class="game-tag">Valorant</span>
+                                <span class="game-tag">Left 4 Dead 2</span>
+                                <span class="game-tag">Roblox</span>
                             </div>
                         </div>
                         
@@ -865,16 +1157,16 @@
                 <!-- Member 3 -->
                 <div class="member-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="member-image-container relative pb-48 overflow-hidden">
-                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Member 3">
+                        <img class="member-image absolute inset-0 h-full w-full object-cover" src="https://res.cloudinary.com/dr57ribr5/image/upload/v1751454829/IMG_20230509_102248_nathxl.jpg" alt="Member 3">
                         <div class="member-image-overlay"></div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Siti Rahmawati</h3>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-1 member-name">Muhammad Taufiqulhakim Maha</h3>
                                 <div class="flex items-center text-gray-600 mb-4">
                                     <i class="fas fa-birthday-cake mr-2 text-blue-500"></i>
-                                    <span>Lahir di Bandung, 22 Agustus 2003</span>
+                                    <span>Lahir di Ngawi, 22 Agustus 2004</span>
                                 </div>
                             </div>
                             <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300 social-icon member-social">
@@ -882,7 +1174,7 @@
                             </a>
                         </div>
                         
-                        <p class="text-gray-600 mb-4">Sang pengorganisir yang menjaga acara KOSBU berjalan lancar dan semua orang bahagia.</p>
+                        <p class="text-gray-600 mb-4">DTKCAMD (Datang kalo cuma ada maunya doang).</p>
                         
                         <div class="mb-4">
                             <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
@@ -890,10 +1182,10 @@
                                 Game Favorit
                             </h4>
                             <div class="flex flex-wrap">
-                                <span class="game-tag">Stardew Valley</span>
-                                <span class="game-tag">Animal Crossing</span>
-                                <span class="game-tag">Minecraft</span>
-                                <span class="game-tag">Candy Crush</span>
+                                <span class="game-tag">Valorant</span>
+                                <span class="game-tag">Roblox</span>
+                                <span class="game-tag">PUBG</span>
+                                
                             </div>
                         </div>
                         
@@ -1030,12 +1322,12 @@
                                     <p class="text-gray-600">Komunitas kami resmi dibentuk dengan 5 anggota pendiri</p>
                                     <div class="flex items-center mt-3 text-sm text-gray-500">
                                         <i class="fas fa-calendar-alt mr-2"></i>
-                                        <span>Januari 2021</span>
+                                        <span>Januari 2023</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="w-full md:w-5/12">
-                                <img src="https://images.unsplash.com/photo-1541252260730-0412e8e2108e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pendirian" class="w-full h-48 object-cover rounded-lg">
+                                <img src="https://res.cloudinary.com/dr57ribr5/image/upload/v1751428000/samples/cloudinary-group.jpg" alt="Pendirian" class="w-full h-48 object-cover rounded-lg">
                             </div>
                         </div>
                     </div>
@@ -1046,12 +1338,12 @@
                                 <div class="moment-card bg-white p-6 rounded-lg shadow-md">
                                     <div class="flex items-center mb-3">
                                         <div class="w-4 h-4 rounded-full bg-blue-600 mr-3"></div>
-                                        <h4 class="font-bold text-lg">Gathering Pertama</h4>
+                                        <h4 class="font-bold text-lg">Kosbu Tour</h4>
                                     </div>
-                                    <p class="text-gray-600">Semua 15 anggota bertemu untuk pertama kalinya di Bandung</p>
+                                    <p class="text-gray-600">Anggota kosbu ke kebun binatang</p>
                                     <div class="flex items-center mt-3 text-sm text-gray-500">
                                         <i class="fas fa-calendar-alt mr-2"></i>
-                                        <span>Juli 2021</span>
+                                        <span>Juli 2024</span>
                                     </div>
                                 </div>
                             </div>
@@ -1067,12 +1359,12 @@
                                 <div class="moment-card bg-white p-6 rounded-lg shadow-md">
                                     <div class="flex items-center mb-3">
                                         <div class="w-4 h-4 rounded-full bg-blue-600 mr-3"></div>
-                                        <h4 class="font-bold text-lg">Liburan ke Pantai</h4>
+                                        <h4 class="font-bold text-lg">Kosbu Tour</h4>
                                     </div>
-                                    <p class="text-gray-600">Liburan 3 hari yang berkesan ke Pantai Anyer</p>
+                                    <p class="text-gray-600">Liburan 3 hari ke puncak??</p>
                                     <div class="flex items-center mt-3 text-sm text-gray-500">
                                         <i class="fas fa-calendar-alt mr-2"></i>
-                                        <span>Desember 2021</span>
+                                        <span>Juli 2025</span>
                                     </div>
                                 </div>
                             </div>
@@ -1092,98 +1384,70 @@
         </div>
     </section>
 
-    <!-- Instagram Section -->
+    <!-- Enhanced Instagram Section -->
     <section id="instagram" class="py-16 bg-white">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Bergabunglah dengan Komunitas Instagram Kami</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ikuti kami untuk update harian, momen behind-the-scenes, dan konten eksklusif!</p>
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Instagram Kami</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Ikuti kami untuk update harian dan momen seru KOSBU</p>
             </div>
             
-            <div class="flex flex-col lg:flex-row items-center justify-between bg-gradient-to-r from-[#5EABD6] to-[#3b82f6] rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up">
-                <div class="w-full lg:w-1/2 p-10 text-white">
-                    <div class="flex items-center mb-6">
-                        <i class="fab fa-instagram text-5xl mr-4"></i>
-                        <div>
-                            <h3 class="text-3xl font-bold">@kosbu_circle</h3>
-                            <p class="text-blue-100">Instagram Resmi KOSBU</p>
+            <div class="instagram-section-container" data-aos="fade-up">
+                <div class="instagram-header">
+                    <img src="https://res.cloudinary.com/dr57ribr5/image/upload/v1751428375/IMG_20230526_114827_je7c6w.jpg" alt="KOSBU Instagram" class="instagram-avatar">
+                    <div>
+                        <div class="instagram-username">@kosbu.mindset</div>
+                        <div class="instagram-bio">Komunitas persahabatan yang tumbuh bersama melalui game, petualangan, dan momen berharga.</div>
+                        <div class="mt-3">
+                            <span class="instagram-tag"><i class="fas fa-gamepad mr-1"></i> Gaming</span>
+                            <span class="instagram-tag"><i class="fas fa-users mr-1"></i> Community</span>
+                            <span class="instagram-tag"><i class="fas fa-laugh-beam mr-1"></i> Fun</span>
                         </div>
                     </div>
-                    
-                    <p class="mb-8 text-blue-100">Kami berbagi momen terbaik, acara, dan kegiatan seru sehari-hari. Jangan sampai ketinggalan!</p>
-                    
-                    <div class="flex items-center mb-8">
-                        <div class="mr-6 text-center">
-                            <div class="text-3xl font-bold">1.2K</div>
-                            <div class="text-sm">Pengikut</div>
+                </div>
+                
+                <div class="instagram-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="post-count">
+                            <i class="fas fa-images stat-icon"></i>
+                            <span class="count">0</span>
                         </div>
-                        <div class="mr-6 text-center">
-                            <div class="text-3xl font-bold">356</div>
-                            <div class="text-sm">Mengikuti</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold">128</div>
-                            <div class="text-sm">Postingan</div>
-                        </div>
+                        <div class="stat-label">Postingan</div>
                     </div>
-                    
-                    <a href="https://instagram.com" target="_blank" class="pulse inline-block bg-white text-[#5EABD6] font-bold rounded-full py-4 px-10 shadow-lg uppercase tracking-wider hover:bg-gray-100 transition duration-300 text-center">
-                        <i class="fab fa-instagram mr-2"></i> Ikuti Kami Sekarang
-                    </a>
+                    <div class="stat-item">
+                        <div class="stat-number" id="follower-count">
+                            <i class="fas fa-users stat-icon"></i>
+                            <span class="count">0</span>
+                        </div>
+                        <div class="stat-label">Pengikut</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="following-count">
+                            <i class="fas fa-user-plus stat-icon"></i>
+                            <span class="count">0</span>
+                        </div>
+                        <div class="stat-label">Mengikuti</div>
+                    </div>
                 </div>
                 
-                <div class="w-full lg:w-1/2 p-6">
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="instagram-post aspect-square">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80" alt="Instagram post">
-                            <div class="instagram-overlay">
-                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
-                                <span class="text-white font-bold">248</span>
-                            </div>
-                        </div>
-                        <div class="instagram-post aspect-square">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Instagram post">
-                            <div class="instagram-overlay">
-                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
-                                <span class="text-white font-bold">312</span>
-                            </div>
-                        </div>
-                        <div class="instagram-post aspect-square">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Instagram post">
-                            <div class="instagram-overlay">
-                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
-                                <span class="text-white font-bold">189</span>
-                            </div>
-                        </div>
-                        <div class="instagram-post aspect-square">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Instagram post">
-                            <div class="instagram-overlay">
-                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
-                                <span class="text-white font-bold">276</span>
-                            </div>
-                        </div>
-                        <div class="instagram-post aspect-square">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Instagram post">
-                            <div class="instagram-overlay">
-                                <i class="fas fa-heart text-2xl text-white mr-3"></i>
-                                <span class="text-white font-bold">154</span>
-                            </div>
-                        </div>
-                        <div class="instagram-post aspect-square bg-black text-white flex items-center justify-center">
-                            <div class="text-center p-4">
-                                <i class="fab fa-instagram text-4xl mb-2"></i>
-                                <p class="font-bold">Lebih Banyak di Instagram</p>
-                            </div>
-                        </div>
+                <div id="instagram-feed-container">
+                    <div class="instagram-loading">
+                        <div class="loading-spinner"></div>
                     </div>
+                </div>
+                
+                <div class="instagram-cta">
+                    <a href="https://www.instagram.com/kosbu.mindset" target="_blank" class="instagram-follow-btn">
+                        <i class="fab fa-instagram"></i> Ikuti Kami di Instagram
+                    </a>
                 </div>
             </div>
             
-            <div class="text-center mt-12" data-aos="fade-up">
+            <div class="text-center mt-8" data-aos="fade-up">
                 <h3 class="text-2xl font-bold text-gray-800 mb-4">Tag kami di momen KOSBU-mu!</h3>
-                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Gunakan #KOSBUCircle di postinganmu untuk berkesempatan ditampilkan di halaman kami</p>
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Gunakan #KOSBU di postinganmu untuk berkesempatan ditampilkan di halaman kami</p>
                 <a href="https://instagram.com/explore/tags/kosbucircle" target="_blank" class="btn-hover bg-gray-800 text-white font-bold rounded-full py-3 px-8 shadow-lg uppercase tracking-wider hover:bg-gray-700 transition duration-300 inline-block">
-                    #KOSBUCircle
+                    #KOSBU
                 </a>
             </div>
         </div>
@@ -1194,7 +1458,7 @@
         <div class="container mx-auto px-6 footer-content">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold">KOSBU Circle</h3>
+                    <h3 class="text-2xl font-bold">KOSBU</h3>
                     <p class="text-gray-400 mt-2">Persahabatan yang abadi</p>
                 </div>
                 <div class="flex space-x-6">
@@ -1213,7 +1477,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 KOSBU Circle. Semua hak dilindungi.</p>
+                <p>&copy; 2025 KOSBU. Semua hak dilindungi.</p>
             </div>
         </div>
     </footer>
@@ -1313,6 +1577,112 @@
             }, { threshold: 0.1 });
             
             observer.observe(title);
+        });
+
+        // Instagram API Configuration
+        const INSTAGRAM_ACCESS_TOKEN = 'IGAAKVZA4ZBTOsRBZAFBFWXROOEhlVnEwSnV1bU1wWUlMbmowOFh4NmhFb2Vmd0xMQTk5allwdUdxQ25hTGwyZAF9aQmJ3M1hNRXJad0ZARMjltbmUzVGYtUEFQODBscG51ZAGtCN0p2LTJzaHVGVWNHbHVpeFB5bGJZAVTFfOHhQN1lMUQZDZD';
+        const INSTAGRAM_USER_ID = '17841462799682371';
+        
+        // Function to fetch Instagram data
+        async function fetchInstagramData() {
+            try {
+                // Show loading state
+                document.getElementById('instagram-feed-container').innerHTML = `
+                    <div class="instagram-loading">
+                        <div class="loading-spinner"></div>
+                    </div>
+                `;
+                
+                // 1. Fetch user profile data
+                const profileResponse = await fetch(`https://graph.instagram.com/${INSTAGRAM_USER_ID}?fields=username,media_count&access_token=${INSTAGRAM_ACCESS_TOKEN}`);
+                const profileData = await profileResponse.json();
+                
+                // 2. Fetch media (posts)
+                const mediaResponse = await fetch(`https://graph.instagram.com/${INSTAGRAM_USER_ID}/media?fields=id,media_url,permalink,thumbnail_url,media_type,caption&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=9`);
+                const mediaData = await mediaResponse.json();
+                
+                // 3. Update UI with the fetched data
+                updateInstagramUI(profileData, mediaData.data);
+            } catch (error) {
+                console.error('Error fetching Instagram data:', error);
+                showErrorState();
+            }
+        }
+        
+        // Function to update UI with Instagram data
+        function updateInstagramUI(profileData, posts) {
+            animateCounter('post-count', profileData.media_count || 0);
+            animateCounter('follower-count', 19); 
+            animateCounter('following-count', 19); 
+            
+            // Render posts
+            const feedContainer = document.getElementById('instagram-feed-container');
+            
+            if (posts && posts.length > 0) {
+                let postsHTML = '<div class="instagram-post-container">';
+                
+                posts.forEach(post => {
+                    const imageUrl = post.media_type === 'VIDEO' ? (post.thumbnail_url || 'https://via.placeholder.com/300') : post.media_url;
+                    const caption = post.caption ? post.caption.substring(0, 100) + (post.caption.length > 100 ? '...' : '') : 'Postingan Instagram KOSBU';
+                    
+                    postsHTML += `
+                        <div class="instagram-post-item">
+                            <img src="${imageUrl}" alt="${caption}" class="instagram-post-image">
+                            <div class="instagram-post-overlay">
+                                <a href="${post.permalink}" target="_blank" class="instagram-post-link" title="${caption}">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                postsHTML += '</div>';
+                feedContainer.innerHTML = postsHTML;
+            } else {
+                showErrorState();
+            }
+        }
+        
+        // Function to animate counter
+        function animateCounter(elementId, target) {
+            const element = document.getElementById(elementId);
+            const countElement = element.querySelector('.count');
+            const duration = 2000; // Animation duration in ms
+            const start = 0;
+            const increment = target / (duration / 16); // 60fps
+            
+            let current = start;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                countElement.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+        
+        // Function to show error state
+        function showErrorState() {
+            document.getElementById('instagram-feed-container').innerHTML = `
+                <div class="instagram-error">
+                    <div class="instagram-error-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Gagal Memuat Feed Instagram</h3>
+                    <p class="mb-4">Kami tidak dapat memuat feed Instagram saat ini. Silakan kunjungi kami langsung di Instagram untuk melihat semua postingan terbaru.</p>
+                    <a href="https://www.instagram.com/kosbu.mindset" target="_blank" class="instagram-follow-btn">
+                        <i class="fab fa-instagram"></i> Kunjungi Instagram Kami
+                    </a>
+                </div>
+            `;
+        }
+        
+        // Call function when page finishes loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Instagram data
+            fetchInstagramData();
         });
     </script>
 </body>
