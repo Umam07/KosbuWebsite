@@ -13,7 +13,6 @@ interface MemoryItem {
   category: string;
   description: string;
   imgUrl: string;
-  isPortrait?: boolean;
 }
 
 const MEMORIES: MemoryItem[] = [
@@ -21,44 +20,51 @@ const MEMORIES: MemoryItem[] = [
     id: "yarsi",
     title: "Universitas YARSI",
     category: "Titik Awal Berjumpa / 2022",
-    description: "Tempat takdir mempertemukan 12 kepala dengan latar belakang berbeda untuk memulai perjalanan perkuliahan bersama.",
-    imgUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Tempat takdir mempertemukan 12 kepala dengan latar belakang berbeda untuk memulai perjalanan perkuliahan bersama.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: "nasi-kotak",
     title: "Momen Nasi Kotak",
     category: "Tradisi Masjid Kampus",
-    description: "Pertemuan legendaris setelah ibadah Jumat di masjid kampus YARSI yang menandai titik awal fondasi kebersamaan kami.",
-    imgUrl: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1000",
-    isPortrait: true,
+    description:
+      "Pertemuan legendaris setelah ibadah Jumat di masjid kampus YARSI yang menandai titik awal fondasi kebersamaan kami.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: "night-out",
     title: "Jakarta Night Out",
     category: "Petualangan Pertama",
-    description: "Obrolan santai, tawa lepas, dan petualangan pertama menyusuri gemerlapnya malam ibukota untuk melepas penat tugas.",
-    imgUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000",
-    isPortrait: true,
+    description:
+      "Obrolan santai, tawa lepas, dan petualangan pertama menyusuri gemerlapnya malam ibukota untuk melepas penat tugas.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000",
   },
   {
     id: "wisuda",
     title: "Hari Wisuda",
     category: "Tumbuh Bersama / 2026",
-    description: "Puncak perjuangan akademik kami. Akhir manis dari status mahasiswa, dan lembaran baru persahabatan abadi.",
-    imgUrl: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000",
+    description:
+      "Puncak perjuangan akademik kami. Akhir manis dari status mahasiswa, dan lembaran baru persahabatan abadi.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000",
   },
 ];
 
 export default function Memories() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [activeMemory, setActiveMemory] = useState<MemoryItem | null>(null);
 
   useGSAP(() => {
     // 1. Dark Theme toggle on scroll
     ScrollTrigger.create({
       trigger: containerRef.current,
-      start: "top 60%",
-      end: "bottom 30%",
+      start: "top 20%",
+      end: "bottom 80%",
       onToggle: (self) => {
         if (self.isActive) {
           document.body.classList.add("dark-theme");
@@ -68,85 +74,88 @@ export default function Memories() {
       },
     });
 
-    // 2. Staggered fade-up animation for memories
-    gsap.from(".reveal-work", {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 70%",
-        toggleActions: "play none none reverse",
-      },
-      y: 60,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.15,
-      ease: "power3.out",
-    });
-
-    // 3. Premium Parallax scroll effect for cards (vertical offset shifting)
-    const cards = gsap.utils.toArray(".work-card");
-    cards.forEach((card: any, i) => {
-      const speed = i % 2 === 0 ? -40 : 40;
-      gsap.fromTo(
-        card,
-        { y: speed },
-        {
-          y: -speed,
+    // 2. Horizontal scroll translation for Desktop
+    const mm = gsap.matchMedia();
+    
+    mm.add("(min-width: 901px)", () => {
+      const track = trackRef.current;
+      if (track) {
+        const scrollWidth = track.scrollWidth - window.innerWidth;
+        // Horizontal sliding timeline
+        gsap.to(track, {
+          x: -scrollWidth - 150, // scroll offset
           ease: "none",
           scrollTrigger: {
-            trigger: card,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
           },
-        }
-      );
+        });
+      }
+    });
+
+    // 3. Staggered reveal of header
+    gsap.from(".reveal-work-header", {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
     });
 
     return () => {
       document.body.classList.remove("dark-theme");
+      mm.revert();
     };
   }, { scope: containerRef });
 
-  // Mouse move handler for glowing border effect
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty("--x", `${x}px`);
-    card.style.setProperty("--y", `${y}px`);
-  };
-
   return (
     <section className="works-section" id="works" ref={containerRef}>
-      <div className="works-container">
-        <div className="works-header">
-          <p className="works-subtitle reveal-work">Kilas Balik</p>
-          <h2 className="works-title reveal-work">Galeri Memori</h2>
-        </div>
-
-        <div className="works-grid">
-          {MEMORIES.map((memory) => (
-            <div
-              key={memory.id}
-              className={`work-card reveal-work ${memory.isPortrait ? "portrait" : ""}`}
-              onMouseMove={handleMouseMove}
-              onClick={() => setActiveMemory(memory)}
-            >
-              <div className="work-img-wrapper">
-                <img
-                  className="work-img"
-                  src={memory.imgUrl}
-                  alt={memory.title}
-                />
-              </div>
-              <div className="work-info">
-                <span className="work-project-title">{memory.title}</span>
-                <span className="work-category">{memory.category}</span>
-              </div>
-              <p className="work-desc">{memory.description}</p>
+      <div className="sticky-wrapper">
+        <div className="works-container-horizontal">
+          {/* Header Slide */}
+          <div className="works-intro-slide">
+            <div className="works-header reveal-work-header">
+              <p className="works-subtitle">Kilas Balik</p>
+              <h2 className="works-title">Galeri Memori</h2>
+              <p className="works-scroll-hint">Gulir untuk menjelajah →</p>
             </div>
-          ))}
+          </div>
+
+          {/* Memories Track */}
+          <div className="memories-track" ref={trackRef}>
+            {MEMORIES.map((memory, i) => (
+              <div
+                key={memory.id}
+                className="memory-slide"
+                onClick={() => setActiveMemory(memory)}
+              >
+                <div className="slide-num">0{i + 1}</div>
+                <div className="slide-img-wrapper">
+                  <img
+                    className="slide-img"
+                    src={memory.imgUrl}
+                    alt={memory.title}
+                  />
+                  <div className="slide-img-overlay">
+                    <span>Lihat Detail</span>
+                  </div>
+                </div>
+                <div className="slide-info">
+                  <span className="slide-category">{memory.category}</span>
+                  <h3 className="slide-title">{memory.title}</h3>
+                  <p className="slide-desc">{memory.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

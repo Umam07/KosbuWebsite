@@ -1055,63 +1055,189 @@ body.dark-theme .game-tag {
 }
 
 /* ========================================== */
-/* MEMORIES SECTION ENHANCEMENTS              */
+/* SECTION FEATURED WORKS (HORIZONTAL PINNED) */
 /* ========================================== */
-.work-card {
+.works-section {
+    width: 100%;
+    height: 350vh; /* Scrollable distance */
     position: relative;
+    z-index: 20;
+    background-color: #ffffff;
+    transition: background-color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.works-section .sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.works-container-horizontal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: max-content;
+    padding: 0 10vw;
+}
+
+.works-intro-slide {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 5vw;
+}
+
+.works-scroll-hint {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 30px;
+    animation: pulseHint 2s infinite ease-in-out;
+}
+
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.6; transform: translateX(0); }
+    50% { opacity: 1; transform: translateX(5px); }
+}
+
+.memories-track {
+    display: flex;
+    flex-direction: row;
+    gap: 8vw;
+    align-items: center;
+}
+
+.memory-slide {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 38vw;
+    cursor: pointer;
+}
+
+.slide-num {
+    font-family: monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #888888;
+    margin-bottom: 12px;
+}
+
+.slide-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1.6;
+    background-color: #1a1a1a;
     border-radius: 12px;
-    overflow: visible;
-    padding: 20px;
-    background: transparent;
-    border: 1px solid transparent;
-    transition: background-color 0.4s ease, border-color 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
 }
 
-body.dark-theme .work-card {
-    background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+body.dark-theme .slide-img-wrapper {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
-body.dark-theme .work-card:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+.memory-slide:hover .slide-img-wrapper {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
 }
 
-.work-card .work-desc {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #666666;
-    margin-top: 10px;
-    max-width: 90%;
-    transition: color 0.3s ease;
+body.dark-theme .memory-slide:hover .slide-img-wrapper {
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
 }
 
-body.dark-theme .work-card .work-desc {
-    color: #aaaaaa;
+.slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(10%);
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1.2s ease;
 }
 
-/* Glowing background hover effect */
-.work-card::before {
-    content: '';
+.memory-slide:hover .slide-img {
+    transform: scale(1.04);
+    filter: grayscale(0%);
+}
+
+.slide-img-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255, 255, 255, 0.06), transparent 40%);
-    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 1;
-    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease;
+    z-index: 5;
 }
 
-.work-card:hover::before {
+.slide-img-overlay span {
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid #ffffff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    transform: translateY(10px);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.memory-slide:hover .slide-img-overlay {
     opacity: 1;
 }
 
-.work-img-wrapper {
-    z-index: 2;
+.memory-slide:hover .slide-img-overlay span {
+    transform: translateY(0);
+}
+
+.slide-info {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-category {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888888;
+    margin-bottom: 8px;
+}
+
+.slide-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.slide-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666666;
+    max-width: 90%;
+    transition: color 0.3s ease;
+}
+
+body.dark-theme .slide-desc {
+    color: #aaaaaa;
 }
 
 /* Lightbox Styling */
@@ -1222,19 +1348,69 @@ body.dark-theme .work-card .work-desc {
     color: #cccccc;
 }
 
-@media (max-width: 768px) {
+/* Responsif Mobile & Tablet untuk Horizontal Scroll */
+@media (max-width: 900px) {
+    .works-section {
+        height: auto !important; /* Matikan horizontal scroll di mobile */
+    }
+    
+    .works-section .sticky-wrapper {
+        position: relative !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .works-container-horizontal {
+        flex-direction: column;
+        width: 100% !important;
+        height: auto !important;
+        padding: 80px 6vw !important;
+    }
+    
+    .works-intro-slide {
+        width: 100% !important;
+        padding-right: 0 !important;
+        margin-bottom: 60px;
+    }
+    
+    .works-scroll-hint {
+        display: none;
+    }
+    
+    .memories-track {
+        flex-direction: column;
+        gap: 60px;
+        width: 100% !important;
+    }
+    
+    .memory-slide {
+        width: 100% !important;
+    }
+    
+    .slide-img-wrapper {
+        aspect-ratio: 1.5;
+    }
+    
+    .slide-title {
+        font-size: 1.5rem;
+    }
+    
     .memory-lightbox-content {
         grid-template-columns: 1fr;
     }
+    
     .lightbox-img {
         max-height: 280px;
     }
+    
     .lightbox-info {
         padding: 35px 25px;
     }
+    
     .lightbox-info h3 {
         font-size: 1.8rem;
     }
+    
     .lightbox-category {
         margin-bottom: 15px;
     }
