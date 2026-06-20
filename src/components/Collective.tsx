@@ -11,7 +11,7 @@ interface MemberDetails {
   birthPlace: string;
   birthDate: string;
   about: string;
-  favGame: string;
+  favGames: string[];
   ig: string;
 }
 
@@ -34,7 +34,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Jakarta",
       birthDate: "12 April 2004",
       about: "Ketua circle yang selalu punya cara unik untuk menyatukan suasana dan merencanakan nongkrong seru.",
-      favGame: "Mobile Legends & Valorant",
+      favGames: ["Mobile Legends", "Valorant"],
       ig: "@riankusuma_",
     },
   },
@@ -48,7 +48,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Bekasi",
       birthDate: "28 Oktober 2003",
       about: "Si jenius akademik yang selalu siap membantu teman-teman saat tugas kuliah menumpuk.",
-      favGame: "Dota 2 & Chess.com",
+      favGames: ["Dota 2", "Chess.com"],
       ig: "@farhanadi",
     },
   },
@@ -62,7 +62,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Jakarta",
       birthDate: "5 September 2004",
       about: "Bendahara kas yang teliti dan tegas. Tidak ada rupiah pun yang luput dari pencatatannya.",
-      favGame: "Genshin Impact & Stardew Valley",
+      favGames: ["Genshin Impact", "Stardew Valley"],
       ig: "@sarahamalia",
     },
   },
@@ -76,7 +76,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Tangerang",
       birthDate: "17 Juni 2003",
       about: "Petualang kuliner yang tahu semua hidden gems tempat nongkrong asyik di Jakarta.",
-      favGame: "PUBG Mobile & FIFA",
+      favGames: ["PUBG Mobile", "FIFA"],
       ig: "@dikapratama",
     },
   },
@@ -90,7 +90,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Depok",
       birthDate: "22 Januari 2004",
       about: "Pengabdi kamera yang selalu mendokumentasikan setiap momen berharga circle.",
-      favGame: "Animal Crossing & Minecraft",
+      favGames: ["Animal Crossing", "Minecraft"],
       ig: "@amelputri",
     },
   },
@@ -104,7 +104,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Jakarta",
       birthDate: "9 Agustus 2003",
       about: "Gamer sejati yang selalu online tiap malam, siap menemani mabar game apa saja.",
-      favGame: "Valorant & CS:GO",
+      favGames: ["Valorant", "CS:GO"],
       ig: "@bagusutomo",
     },
   },
@@ -118,7 +118,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Bogor",
       birthDate: "14 Februari 2004",
       about: "Musik enthusiast yang bertugas mengurasi playlist lagu seru saat nongkrong bareng.",
-      favGame: "Roblox & Osu!",
+      favGames: ["Roblox", "Osu!"],
       ig: "@nadiaselina",
     },
   },
@@ -132,7 +132,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Jakarta",
       birthDate: "30 November 2003",
       about: "Supir andalan berlisensi yang paling sabar membawa mobil saat trip dadakan ke luar kota.",
-      favGame: "Assetto Corsa & GTA V",
+      favGames: ["Assetto Corsa", "GTA V"],
       ig: "@rakarayhan",
     },
   },
@@ -146,7 +146,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Bandung",
       birthDate: "8 Juli 2004",
       about: "Pembawa info terhangat di kampus yang selalu membuat suasana obrolan menjadi ramai.",
-      favGame: "The Sims 4 & Among Us",
+      favGames: ["The Sims 4", "Among Us"],
       ig: "@gitaclarissa",
     },
   },
@@ -160,7 +160,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Jakarta",
       birthDate: "19 Mei 2003",
       about: "Inisiator rencana trip dadakan. Moto hidupnya: 'Rencana yang mendadak adalah yang paling jadi.'",
-      favGame: "Mobile Legends & Apex Legends",
+      favGames: ["Mobile Legends", "Apex Legends"],
       ig: "@rezamahendra",
     },
   },
@@ -174,7 +174,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Tangerang Selatan",
       birthDate: "3 Maret 2004",
       about: "Pendengar yang baik tempat curhat segala keluh kesah kehidupan perkuliahan maupun asmara.",
-      favGame: "Candy Crush & Hay Day",
+      favGames: ["Candy Crush", "Hay Day"],
       ig: "@sitirahma",
     },
   },
@@ -188,7 +188,7 @@ const MEMBERS: Member[] = [
       birthPlace: "Jakarta",
       birthDate: "15 November 2003",
       about: "Sang pemburu nasi kotak masjid sejati yang selalu hafal jadwal acara keagamaan kampus.",
-      favGame: "Clash of Clans & FIFA",
+      favGames: ["Clash of Clans", "FIFA"],
       ig: "@fajarramadhan",
     },
   },
@@ -293,9 +293,13 @@ export default function Collective() {
                   </div>
                   <div className="modal-detail-item">
                     <span className="detail-label">Game Favorit</span>
-                    <span className="detail-value">
-                      {selectedMember.details.favGame}
-                    </span>
+                    <div className="modal-tags-container">
+                      {selectedMember.details.favGames.map((game, i) => (
+                        <span key={i} className="game-tag">
+                          {game}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                   <div className="modal-detail-item">
                     <span className="detail-label">Instagram</span>
