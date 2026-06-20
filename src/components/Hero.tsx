@@ -256,13 +256,6 @@ export default function Hero() {
     }
   };
 
-  const handleFooterLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (lenis) {
-      lenis.scrollTo("#groupIntro", { duration: 1.2 });
-    }
-  };
-
   return (
     <>
       <section className="scroller-section">
@@ -281,15 +274,7 @@ export default function Hero() {
                 Komunitas persahabatan yang tumbuh bersama, bermain bersama, dan
                 menciptakan kenangan tak terlupakan.
               </p>
-              <a
-                href="#groupIntro"
-                className="hero-clean-link"
-                onClick={handleFooterLinkClick}
-              >
-                Telusuri kisah kami lebih dalam
-              </a>
             </div>
-            <span className="hero-scroll-tag">(Gulir)</span>
           </div>
         </div>
       </section>
