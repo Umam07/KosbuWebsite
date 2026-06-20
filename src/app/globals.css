@@ -1053,3 +1053,189 @@ body.dark-theme .game-tag {
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #e0e0e0;
 }
+
+/* ========================================== */
+/* MEMORIES SECTION ENHANCEMENTS              */
+/* ========================================== */
+.work-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: visible;
+    padding: 20px;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+body.dark-theme .work-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+body.dark-theme .work-card:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.work-card .work-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666666;
+    margin-top: 10px;
+    max-width: 90%;
+    transition: color 0.3s ease;
+}
+
+body.dark-theme .work-card .work-desc {
+    color: #aaaaaa;
+}
+
+/* Glowing background hover effect */
+.work-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255, 255, 255, 0.06), transparent 40%);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.work-card:hover::before {
+    opacity: 1;
+}
+
+.work-img-wrapper {
+    z-index: 2;
+}
+
+/* Lightbox Styling */
+.memory-lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 1500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.memory-lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.memory-lightbox-content {
+    background-color: #0d0d0d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 90%;
+    max-width: 950px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+}
+
+.memory-lightbox-overlay.active .memory-lightbox-content {
+    transform: scale(1);
+}
+
+.close-lightbox-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.close-lightbox-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.lightbox-img {
+    width: 100%;
+    height: 100%;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.lightbox-info {
+    padding: 60px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.lightbox-info h3 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.lightbox-category {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888888;
+    margin-bottom: 30px;
+}
+
+.lightbox-desc {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+@media (max-width: 768px) {
+    .memory-lightbox-content {
+        grid-template-columns: 1fr;
+    }
+    .lightbox-img {
+        max-height: 280px;
+    }
+    .lightbox-info {
+        padding: 35px 25px;
+    }
+    .lightbox-info h3 {
+        font-size: 1.8rem;
+    }
+    .lightbox-category {
+        margin-bottom: 15px;
+    }
+}
