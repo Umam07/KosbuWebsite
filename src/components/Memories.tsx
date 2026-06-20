@@ -56,7 +56,7 @@ const MEMORIES: MemoryItem[] = [
 
 export default function Memories() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const horizontalContainerRef = useRef<HTMLDivElement>(null);
   const [activeMemory, setActiveMemory] = useState<MemoryItem | null>(null);
 
   useGSAP(() => {
@@ -78,20 +78,22 @@ export default function Memories() {
     const mm = gsap.matchMedia();
     
     mm.add("(min-width: 901px)", () => {
-      const track = trackRef.current;
-      if (track) {
+      const container = containerRef.current;
+      const track = horizontalContainerRef.current;
+      if (container && track) {
+        // Calculate exact horizontal offset translation (entire row slides left)
         const scrollWidth = track.scrollWidth - window.innerWidth;
-        // Horizontal sliding timeline
+        
         gsap.to(track, {
-          x: -scrollWidth - 150, // scroll offset
+          x: -scrollWidth,
           ease: "none",
           scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 1,
+            trigger: container,
             pin: true,
-            anticipatePin: 1,
+            scrub: 1,
+            start: "top top",
+            end: () => `+=${scrollWidth}`,
+            invalidateOnRefresh: true,
           },
         });
       }
@@ -119,7 +121,8 @@ export default function Memories() {
   return (
     <section className="works-section" id="works" ref={containerRef}>
       <div className="sticky-wrapper">
-        <div className="works-container-horizontal">
+        {/* We animate this entire horizontal container to prevent slides overlaying on the header */}
+        <div className="works-container-horizontal" ref={horizontalContainerRef}>
           {/* Header Slide */}
           <div className="works-intro-slide">
             <div className="works-header reveal-work-header">
@@ -130,7 +133,7 @@ export default function Memories() {
           </div>
 
           {/* Memories Track */}
-          <div className="memories-track" ref={trackRef}>
+          <div className="memories-track">
             {MEMORIES.map((memory, i) => (
               <div
                 key={memory.id}

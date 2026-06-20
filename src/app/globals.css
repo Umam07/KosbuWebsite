@@ -1054,22 +1054,24 @@ body.dark-theme .game-tag {
     color: #e0e0e0;
 }
 
+
+
 /* ========================================== */
 /* SECTION FEATURED WORKS (HORIZONTAL PINNED) */
 /* ========================================== */
 .works-section {
     width: 100%;
-    height: 350vh; /* Scrollable distance */
+    height: 100vh; /* Exactly 100vh to avoid spacing gaps */
     position: relative;
     z-index: 20;
     background-color: #ffffff;
     transition: background-color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
 }
 
 .works-section .sticky-wrapper {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    position: relative;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     display: flex;
