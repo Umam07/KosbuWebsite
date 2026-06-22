@@ -285,7 +285,7 @@ export default function Memories() {
       </div>
 
       {/* Full-screen Gallery Overlay (Acts like a new page) */}
-      <div className={`full-gallery-overlay ${showGallery ? "active" : ""}`}>
+      <div className={`full-gallery-overlay ${showGallery ? "active" : ""}`} data-lenis-prevent>
         <div className="gallery-overlay-inner">
           <div className="gallery-header-container">
             <button className="back-to-home-btn" onClick={closeGallery}>
