@@ -89,7 +89,26 @@ const MEMORIES: MemoryItem[] = [
     imgUrl:
       "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=1000",
   },
+  {
+    id: "kopdar-kafe",
+    title: "Diskusi & Kopi Malam",
+    category: "Nongkrong Santai / 2025",
+    description:
+      "Obrolan hangat di sudut kafe favorit, bertukar ide, keluh kesah, hingga merencanakan masa depan bersama.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    id: "kelulusan-circle",
+    title: "Syukuran Kelulusan",
+    category: "Pencapaian Bersama / 2026",
+    description:
+      "Makan malam bersama sebagai bentuk rasa syukur atas kelulusan seluruh anggota circle tanpa ada yang tertinggal.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&q=80&w=1000",
+  },
 ];
+
 
 export default function Memories() {
   const containerRef = useRef<HTMLDivElement>(null);
