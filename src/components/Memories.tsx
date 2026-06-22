@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useLenis } from "lenis/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -52,38 +53,77 @@ const MEMORIES: MemoryItem[] = [
     imgUrl:
       "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000",
   },
+  {
+    id: "bukber",
+    title: "Bukber & Sahur Bersama",
+    category: "Momen Ramadan / 2023",
+    description:
+      "Kehangatan bulan suci di kosan. Mulai dari memasak sahur bareng hingga berburu takjil di jalanan Jakarta.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    id: "trip-puncak",
+    title: "Trip Dadakan ke Puncak",
+    category: "Liburan Singkat / 2024",
+    description:
+      "Melarikan diri sejenak dari hiruk-pikuk tugas kuliah ke dinginnya udara Puncak, menikmati malam dingin dengan api unggun.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    id: "begadang-tugas",
+    title: "Begadang Demi Project",
+    category: "Perjuangan Akademik / 2025",
+    description:
+      "Malam-malam panjang yang dihabiskan bersama cangkir kopi, baris-baris coding, dan tawa untuk menyelesaikan proyek akhir.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=1000",
+  },
+  {
+    id: "birthday-surprise",
+    title: "Kejutan Ulang Tahun",
+    category: "Tradisi Circle",
+    description:
+      "Tradisi sederhana merayakan hari lahir setiap anggota dengan kejutan tengah malam, kue seadanya, dan doa-doa terbaik.",
+    imgUrl:
+      "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=1000",
+  },
 ];
 
 export default function Memories() {
   const containerRef = useRef<HTMLDivElement>(null);
   const horizontalContainerRef = useRef<HTMLDivElement>(null);
   const [activeMemory, setActiveMemory] = useState<MemoryItem | null>(null);
+  const [showGallery, setShowGallery] = useState(false);
+  const lenis = useLenis();
+
+  const openGallery = () => {
+    setShowGallery(true);
+    lenis?.stop();
+    document.body.classList.add("modal-open");
+  };
+
+  const closeGallery = () => {
+    setShowGallery(false);
+    lenis?.start();
+    document.body.classList.remove("modal-open");
+  };
+
+  const formatIndex = (index: number) => {
+    return index < 10 ? `0${index}` : `${index}`;
+  };
 
   useGSAP(() => {
-    // 1. Dark Theme toggle on scroll
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top 20%",
-      end: "bottom 80%",
-      onToggle: (self) => {
-        if (self.isActive) {
-          document.body.classList.add("dark-theme");
-        } else {
-          document.body.classList.remove("dark-theme");
-        }
-      },
-    });
-
-    // 2. Horizontal scroll translation for Desktop
     const mm = gsap.matchMedia();
-    
+
+    // 1. Desktop mode: Horizontal scroll + Pinning + Dark Theme Toggle
     mm.add("(min-width: 901px)", () => {
       const container = containerRef.current;
       const track = horizontalContainerRef.current;
       if (container && track) {
-        // Calculate exact horizontal offset translation (entire row slides left)
         const scrollWidth = track.scrollWidth - window.innerWidth;
-        
+
         gsap.to(track, {
           x: -scrollWidth,
           ease: "none",
@@ -94,9 +134,32 @@ export default function Memories() {
             start: "top top",
             end: () => `+=${scrollWidth}`,
             invalidateOnRefresh: true,
+            onToggle: (self) => {
+              if (self.isActive) {
+                document.body.classList.add("dark-theme");
+              } else {
+                document.body.classList.remove("dark-theme");
+              }
+            },
           },
         });
       }
+    });
+
+    // 2. Mobile mode: Normal vertical scroll + Dark Theme Toggle
+    mm.add("(max-width: 900px)", () => {
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top 40%",
+        end: "bottom 60%",
+        onToggle: (self) => {
+          if (self.isActive) {
+            document.body.classList.add("dark-theme");
+          } else {
+            document.body.classList.remove("dark-theme");
+          }
+        },
+      });
     });
 
     // 3. Staggered reveal of header
@@ -114,14 +177,17 @@ export default function Memories() {
 
     return () => {
       document.body.classList.remove("dark-theme");
+      document.body.classList.remove("modal-open");
       mm.revert();
     };
   }, { scope: containerRef });
 
+  // Only display the first 4 memories in the horizontal track
+  const horizontalMemories = MEMORIES.slice(0, 4);
+
   return (
     <section className="works-section" id="works" ref={containerRef}>
       <div className="sticky-wrapper">
-        {/* We animate this entire horizontal container to prevent slides overlaying on the header */}
         <div className="works-container-horizontal" ref={horizontalContainerRef}>
           {/* Header Slide */}
           <div className="works-intro-slide">
@@ -134,13 +200,13 @@ export default function Memories() {
 
           {/* Memories Track */}
           <div className="memories-track">
-            {MEMORIES.map((memory, i) => (
+            {horizontalMemories.map((memory, i) => (
               <div
                 key={memory.id}
                 className="memory-slide"
                 onClick={() => setActiveMemory(memory)}
               >
-                <div className="slide-num">0{i + 1}</div>
+                <div className="slide-num">{formatIndex(i + 1)}</div>
                 <div className="slide-img-wrapper">
                   <img
                     className="slide-img"
@@ -158,6 +224,105 @@ export default function Memories() {
                 </div>
               </div>
             ))}
+
+            {/* Static "Lihat Lebih Banyak" Slide */}
+            <div
+              className="memory-slide see-more-slide"
+              onClick={openGallery}
+            >
+              <div className="slide-num">05</div>
+              <div className="slide-img-wrapper see-more-img-wrapper">
+                <div className="see-more-bg-grid">
+                  <div className="see-more-icon-circle">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m9 18 6-6-6-6" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="slide-img-overlay">
+                  <span>Buka Galeri</span>
+                </div>
+              </div>
+              <div className="slide-info">
+                <span className="slide-category">Galeri Momen</span>
+                <h3 className="slide-title">Lihat Lebih Banyak</h3>
+                <p className="slide-desc">
+                  Buka sisa foto kenangan dan momen indah kebersamaan kami.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Full-screen Gallery Overlay (Acts like a new page) */}
+      <div className={`full-gallery-overlay ${showGallery ? "active" : ""}`}>
+        <div className="gallery-overlay-inner">
+          <div className="gallery-header-container">
+            <button className="back-to-home-btn" onClick={closeGallery}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+              Kembali
+            </button>
+            <div className="gallery-title-wrapper">
+              <h2 className="gallery-overlay-title">Semua Kenangan</h2>
+              <p className="gallery-overlay-subtitle">
+                Koleksi foto lengkap perjalanan dan persahabatan lingkaran Kosbu.
+              </p>
+            </div>
+            <div className="gallery-header-spacer"></div>
+          </div>
+
+          <div className="gallery-grid-container">
+            <div className="gallery-grid">
+              {MEMORIES.map((memory, i) => (
+                <div
+                  key={memory.id}
+                  className="gallery-grid-card"
+                  onClick={() => setActiveMemory(memory)}
+                >
+                  <div className="grid-card-img-wrapper">
+                    <img
+                      src={memory.imgUrl}
+                      alt={memory.title}
+                      className="grid-card-img"
+                    />
+                    <div className="grid-card-overlay">
+                      <span>Lihat Detail</span>
+                    </div>
+                  </div>
+                  <div className="grid-card-info">
+                    <div className="grid-card-meta">
+                      <span className="grid-card-num">{formatIndex(i + 1)}</span>
+                      <span className="grid-card-category">{memory.category}</span>
+                    </div>
+                    <h3 className="grid-card-title">{memory.title}</h3>
+                    <p className="grid-card-desc">{memory.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
