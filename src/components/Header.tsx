@@ -25,14 +25,14 @@ export default function Header() {
       </div>
       <div className="header-right">
         <nav className="nav-links">
-          <a href="#works" onClick={(e) => handleNavClick(e, "#works")}>
-            Memori
-          </a>
           <a href="#groupIntro" onClick={(e) => handleNavClick(e, "#groupIntro")}>
             Tentang
           </a>
+          <a href="#works" onClick={(e) => handleNavClick(e, "#works")}>
+            Memories
+          </a>
           <a href="#members" onClick={(e) => handleNavClick(e, "#members")}>
-            Collective
+            Kolektif
           </a>
           <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")}>
             Hubungi
