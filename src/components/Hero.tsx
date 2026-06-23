@@ -303,7 +303,13 @@ export default function Hero() {
           id="briefcaseBody"
           ref={briefcaseBodyRef}
         >
-          <video id="mainVideo" ref={videoRef} loop playsInline>
+          <video
+            id="mainVideo"
+            ref={videoRef}
+            loop
+            playsInline
+            poster="https://res.cloudinary.com/dr57ribr5/image/upload/v1782193338/KosbuRame_j31lsq.jpg"
+          >
             <source
               src="https://res.cloudinary.com/dr57ribr5/video/upload/v1781887629/Video_Kosbu_w8mw5b.mp4"
               type="video/mp4"
