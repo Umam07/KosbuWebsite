@@ -684,8 +684,8 @@ body.dark-theme .member-desc {
 /* Grid Utama */
 .members-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px 32px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 36px;
     position: relative;
 }
 
@@ -694,12 +694,21 @@ body.dark-theme .member-desc {
     flex-direction: column;
     cursor: pointer;
     position: relative;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* EFEK ASIMETRIS: Kolom ke-2 dan ke-4 digeser ke bawah */
-.member-card:nth-child(4n+2),
-.member-card:nth-child(4n+4) {
-    margin-top: 80px;
+.member-card:hover {
+    transform: translateY(-10px);
+}
+
+@media (min-width: 901px) {
+    /* Stagger the middle column in 3-column grid */
+    .member-card:nth-child(3n+2) {
+        margin-top: 60px;
+    }
+    .members-section {
+        padding-bottom: 220px; /* Extra padding at the bottom so the offset card doesn't clip */
+    }
 }
 
 /* Container Image Potret */
@@ -711,7 +720,7 @@ body.dark-theme .member-desc {
     overflow: hidden;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 body.dark-theme .member-img-wrapper {
     background-color: #161618;
@@ -719,11 +728,10 @@ body.dark-theme .member-img-wrapper {
 }
 
 .member-card:hover .member-img-wrapper {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(255, 62, 108, 0.12);
+    box-shadow: 0 20px 45px rgba(255, 62, 108, 0.15);
 }
 body.dark-theme .member-card:hover .member-img-wrapper {
-    box-shadow: 0 20px 40px rgba(255, 62, 108, 0.24);
+    box-shadow: 0 20px 45px rgba(255, 62, 108, 0.26);
 }
 
 .member-img {
@@ -941,18 +949,12 @@ body.dark-theme .footer-bottom {
         grid-template-columns: repeat(2, 1fr);
         gap: 40px 30px;
     }
+    .member-card:nth-child(2n) {
+        margin-top: 40px;
+    }
     .footer-links-grid {
         grid-template-columns: 1fr;
         gap: 40px;
-    }
-    /* Matikan efek asimetris berlebih di layar kecil */
-    .member-card:nth-child(4n+2),
-    .member-card:nth-child(4n+4) {
-        margin-top: 0;
-    }
-    /* Setel asimetris sederhana untuk tablet */
-    .member-card:nth-child(2n) {
-        margin-top: 40px;
     }
     .members-section {
         padding-bottom: 180px;
@@ -984,7 +986,7 @@ body.dark-theme .footer-bottom {
 @media (max-width: 500px) {
     .members-grid {
         grid-template-columns: 1fr;
-        gap: 40px 0;
+        gap: 35px 0;
     }
     .member-card:nth-child(2n) {
         margin-top: 0;
