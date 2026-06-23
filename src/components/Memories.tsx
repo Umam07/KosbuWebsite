@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -115,7 +116,12 @@ export default function Memories() {
   const horizontalContainerRef = useRef<HTMLDivElement>(null);
   const [activeMemory, setActiveMemory] = useState<MemoryItem | null>(null);
   const [showGallery, setShowGallery] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const lenis = useLenis();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (activeMemory || showGallery) {
@@ -270,110 +276,115 @@ export default function Memories() {
       </div>
 
       {/* Full-screen Gallery Overlay (Acts like a new page) */}
-      <div className={`full-gallery-overlay ${showGallery ? "active" : ""}`} data-lenis-prevent>
-        <div className="gallery-overlay-inner">
-          <div className="gallery-header-container">
-            <button className="back-to-home-btn" onClick={closeGallery}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-              Kembali
-            </button>
-            <div className="gallery-title-wrapper">
-              <h2 className="gallery-overlay-title">Semua Kenangan</h2>
-              <p className="gallery-overlay-subtitle">
-                Koleksi foto lengkap perjalanan dan persahabatan lingkaran Kosbu.
-              </p>
-            </div>
-            <div className="gallery-header-spacer"></div>
-          </div>
-
-          <div className="gallery-grid-container">
-            <div className="gallery-grid">
-              {MEMORIES.map((memory, i) => (
-                <div
-                  key={memory.id}
-                  className="gallery-grid-card"
-                  onClick={() => setActiveMemory(memory)}
-                >
-                  <div className="grid-card-img-wrapper">
-                    <img
-                      src={memory.imgUrl}
-                      alt={memory.title}
-                      className="grid-card-img"
-                    />
-                    <div className="grid-card-overlay">
-                      <span>Lihat Detail</span>
-                    </div>
-                  </div>
-                  <div className="grid-card-info">
-                    <div className="grid-card-meta">
-                      <span className="grid-card-num">{formatIndex(i + 1)}</span>
-                      <span className="grid-card-category">{memory.category}</span>
-                    </div>
-                    <h3 className="grid-card-title">{memory.title}</h3>
-                    <p className="grid-card-desc">{memory.description}</p>
-                  </div>
+      {mounted && createPortal(
+        <>
+          <div className={`full-gallery-overlay ${showGallery ? "active" : ""}`} data-lenis-prevent>
+            <div className="gallery-overlay-inner">
+              <div className="gallery-header-container">
+                <button className="back-to-home-btn" onClick={closeGallery}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
+                  Kembali
+                </button>
+                <div className="gallery-title-wrapper">
+                  <h2 className="gallery-overlay-title">Semua Kenangan</h2>
+                  <p className="gallery-overlay-subtitle">
+                    Koleksi foto lengkap perjalanan dan persahabatan lingkaran Kosbu.
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+                <div className="gallery-header-spacer"></div>
+              </div>
 
-      {/* Lightbox Pop-up Modal */}
-      <div
-        className={`memory-lightbox-overlay ${activeMemory ? "active" : ""}`}
-        onClick={() => setActiveMemory(null)}
-      >
-        {activeMemory && (
-          <div
-            className="memory-lightbox-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="close-lightbox-btn"
-              onClick={() => setActiveMemory(null)}
-              aria-label="Close"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <img
-              src={activeMemory.imgUrl}
-              alt={activeMemory.title}
-              className="lightbox-img"
-            />
-            <div className="lightbox-info">
-              <h3>{activeMemory.title}</h3>
-              <p className="lightbox-category">{activeMemory.category}</p>
-              <p className="lightbox-desc">{activeMemory.description}</p>
+              <div className="gallery-grid-container">
+                <div className="gallery-grid">
+                  {MEMORIES.map((memory, i) => (
+                    <div
+                      key={memory.id}
+                      className="gallery-grid-card"
+                      onClick={() => setActiveMemory(memory)}
+                    >
+                      <div className="grid-card-img-wrapper">
+                        <img
+                          src={memory.imgUrl}
+                          alt={memory.title}
+                          className="grid-card-img"
+                        />
+                        <div className="grid-card-overlay">
+                          <span>Lihat Detail</span>
+                        </div>
+                      </div>
+                      <div className="grid-card-info">
+                        <div className="grid-card-meta">
+                          <span className="grid-card-num">{formatIndex(i + 1)}</span>
+                          <span className="grid-card-category">{memory.category}</span>
+                        </div>
+                        <h3 className="grid-card-title">{memory.title}</h3>
+                        <p className="grid-card-desc">{memory.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        )}
-      </div>
+
+          {/* Lightbox Pop-up Modal */}
+          <div
+            className={`memory-lightbox-overlay ${activeMemory ? "active" : ""}`}
+            onClick={() => setActiveMemory(null)}
+          >
+            {activeMemory && (
+              <div
+                className="memory-lightbox-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  className="close-lightbox-btn"
+                  onClick={() => setActiveMemory(null)}
+                  aria-label="Close"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+                <img
+                  src={activeMemory.imgUrl}
+                  alt={activeMemory.title}
+                  className="lightbox-img"
+                />
+                <div className="lightbox-info">
+                  <h3>{activeMemory.title}</h3>
+                  <p className="lightbox-category">{activeMemory.category}</p>
+                  <p className="lightbox-desc">{activeMemory.description}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </>,
+        document.body
+      )}
     </section>
   );
 }

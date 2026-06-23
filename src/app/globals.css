@@ -55,11 +55,6 @@ body.modal-open header {
     pointer-events: none !important;
 }
 
-body.modal-open .works-section,
-body.modal-open .members-section {
-    z-index: 1000 !important;
-}
-
 .header-logo {
     font-weight: 900;
     font-size: 1.5rem;

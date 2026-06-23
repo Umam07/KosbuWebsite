@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -198,7 +199,12 @@ const MEMBERS: Member[] = [
 export default function Collective() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [mounted, setMounted] = useState(false);
   const lenis = useLenis();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (selectedMember) {
@@ -270,90 +276,93 @@ export default function Collective() {
       </div>
 
       {/* Premium Detail Modal Overlay */}
-      <div
-        className={`member-modal-overlay ${selectedMember ? "active" : ""}`}
-        onClick={closeDetails}
-      >
-        {selectedMember && (
-          <div
-            className="member-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="close-modal-btn"
-              onClick={closeDetails}
-              aria-label="Close"
+      {mounted && createPortal(
+        <div
+          className={`member-modal-overlay ${selectedMember ? "active" : ""}`}
+          onClick={closeDetails}
+        >
+          {selectedMember && (
+            <div
+              className="member-modal-content"
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <button
+                className="close-modal-btn"
+                onClick={closeDetails}
+                aria-label="Close"
               >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-            <div className="modal-body-grid">
-              <div className="modal-img-col">
-                <img
-                  src={selectedMember.imgUrl}
-                  alt={selectedMember.name}
-                />
-              </div>
-              <div className="modal-info-col">
-                <h2>{selectedMember.name}</h2>
-                <p className="modal-role">{selectedMember.role}</p>
-                <div className="modal-detail-items">
-                  <div className="modal-detail-item">
-                    <span className="detail-label">Tempat, Tanggal Lahir</span>
-                    <span className="detail-value">
-                      {selectedMember.details.birthPlace},{" "}
-                      {selectedMember.details.birthDate}
-                    </span>
-                  </div>
-                  <div className="modal-detail-item">
-                    <span className="detail-label">Tentang</span>
-                    <span className="detail-value">
-                      {selectedMember.details.about}
-                    </span>
-                  </div>
-                  <div className="modal-detail-item">
-                    <span className="detail-label">Game Favorit</span>
-                    <div className="modal-tags-container">
-                      {selectedMember.details.favGames.map((game, i) => (
-                        <span key={i} className="game-tag">
-                          {game}
-                        </span>
-                      ))}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+              <div className="modal-body-grid">
+                <div className="modal-img-col">
+                  <img
+                    src={selectedMember.imgUrl}
+                    alt={selectedMember.name}
+                  />
+                </div>
+                <div className="modal-info-col">
+                  <h2>{selectedMember.name}</h2>
+                  <p className="modal-role">{selectedMember.role}</p>
+                  <div className="modal-detail-items">
+                    <div className="modal-detail-item">
+                      <span className="detail-label">Tempat, Tanggal Lahir</span>
+                      <span className="detail-value">
+                        {selectedMember.details.birthPlace},{" "}
+                        {selectedMember.details.birthDate}
+                      </span>
                     </div>
-                  </div>
-                  <div className="modal-detail-item">
-                    <span className="detail-label">Instagram</span>
-                    <span className="detail-value">
-                      <a
-                        href={`https://instagram.com/${selectedMember.details.ig.replace(
-                          "@",
-                          ""
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {selectedMember.details.ig} ↗
-                      </a>
-                    </span>
+                    <div className="modal-detail-item">
+                      <span className="detail-label">Tentang</span>
+                      <span className="detail-value">
+                        {selectedMember.details.about}
+                      </span>
+                    </div>
+                    <div className="modal-detail-item">
+                      <span className="detail-label">Game Favorit</span>
+                      <div className="modal-tags-container">
+                        {selectedMember.details.favGames.map((game, i) => (
+                          <span key={i} className="game-tag">
+                            {game}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="modal-detail-item">
+                      <span className="detail-label">Instagram</span>
+                      <span className="detail-value">
+                        <a
+                          href={`https://instagram.com/${selectedMember.details.ig.replace(
+                            "@",
+                            ""
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {selectedMember.details.ig} ↗
+                        </a>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>,
+        document.body
+      )}
     </section>
   );
 }
