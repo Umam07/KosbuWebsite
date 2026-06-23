@@ -136,7 +136,7 @@ export default function Memories() {
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    // 1. Desktop mode: Horizontal scroll + Pinning + Dark Theme Toggle
+    // 1. Desktop mode: Horizontal scroll + Pinning
     mm.add("(min-width: 901px)", () => {
       const container = containerRef.current;
       const track = horizontalContainerRef.current;
@@ -153,35 +153,12 @@ export default function Memories() {
             start: "top top",
             end: () => `+=${scrollWidth}`,
             invalidateOnRefresh: true,
-            onToggle: (self) => {
-              if (self.isActive) {
-                document.body.classList.add("dark-theme");
-              } else {
-                document.body.classList.remove("dark-theme");
-              }
-            },
           },
         });
       }
     });
 
-    // 2. Mobile mode: Normal vertical scroll + Dark Theme Toggle
-    mm.add("(max-width: 900px)", () => {
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top 40%",
-        end: "bottom 60%",
-        onToggle: (self) => {
-          if (self.isActive) {
-            document.body.classList.add("dark-theme");
-          } else {
-            document.body.classList.remove("dark-theme");
-          }
-        },
-      });
-    });
-
-    // 3. Staggered reveal of header
+    // 2. Staggered reveal of header
     gsap.from(".reveal-work-header", {
       scrollTrigger: {
         trigger: containerRef.current,
@@ -195,7 +172,6 @@ export default function Memories() {
     });
 
     return () => {
-      document.body.classList.remove("dark-theme");
       document.body.classList.remove("modal-open");
       mm.revert();
     };
@@ -359,8 +335,22 @@ export default function Memories() {
             <button
               className="close-lightbox-btn"
               onClick={() => setActiveMemory(null)}
+              aria-label="Close"
             >
-              &times;
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
             </button>
             <img
               src={activeMemory.imgUrl}

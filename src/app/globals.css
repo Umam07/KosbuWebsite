@@ -914,21 +914,38 @@ body.dark-theme .member-modal-content {
     position: absolute;
     top: 20px;
     right: 25px;
-    background: none;
-    border: none;
-    font-size: 2.2rem;
-    font-weight: 300;
-    color: inherit;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #333333;
     cursor: pointer;
     z-index: 10;
-    line-height: 1;
-    opacity: 0.6;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .close-modal-btn:hover {
-    opacity: 1;
-    transform: rotate(90deg);
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+}
+
+body.dark-theme .close-modal-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+body.dark-theme .close-modal-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
 }
 
 .modal-body-grid {
@@ -1137,11 +1154,11 @@ body.dark-theme .game-tag {
     width: 100%;
     aspect-ratio: 1.6;
     background-color: #1a1a1a;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
 }
 
 body.dark-theme .slide-img-wrapper {
@@ -1149,8 +1166,8 @@ body.dark-theme .slide-img-wrapper {
 }
 
 .memory-slide:hover .slide-img-wrapper {
-    transform: scale(1.02) translateY(-5px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    transform: scale(1.03) translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
 
 body.dark-theme .memory-slide:hover .slide-img-wrapper {
@@ -1357,29 +1374,28 @@ body.dark-theme .memory-slide:hover .see-more-icon-circle {
 
 .close-lightbox-btn {
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    font-size: 2.2rem;
-    font-weight: 300;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: #ffffff;
     cursor: pointer;
     z-index: 10;
-    line-height: 1;
-    width: 45px;
-    height: 45px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .close-lightbox-btn:hover {
-    opacity: 1;
-    transform: rotate(90deg);
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
 }
 
 .lightbox-img {
