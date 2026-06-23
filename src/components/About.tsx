@@ -9,9 +9,27 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const stickyContentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Staggered fade-up animation for reveal elements
+    // 1. Pinned Column for Desktop Screen
+    const mm = gsap.matchMedia();
+    
+    mm.add("(min-width: 901px)", () => {
+      ScrollTrigger.create({
+        trigger: "#pinnedColumn",
+        pin: stickyContentRef.current,
+        start: "top 120px",
+        end: () => {
+          const stickyHeight = stickyContentRef.current?.clientHeight || 0;
+          return `bottom ${120 + stickyHeight}px`;
+        },
+        pinSpacing: false,
+        invalidateOnRefresh: true,
+      });
+    });
+
+    // 2. Staggered fade-up animation for reveal elements
     gsap.from(".reveal-el", {
       scrollTrigger: {
         trigger: containerRef.current,
@@ -24,6 +42,10 @@ export default function About() {
       stagger: 0.1,
       ease: "power3.out",
     });
+
+    return () => {
+      mm.revert();
+    };
   }, { scope: containerRef });
 
   return (
@@ -31,28 +53,30 @@ export default function About() {
       <div className="intro-container">
         <div className="intro-grid">
           <div className="intro-left" id="pinnedColumn">
-            <h2 className="intro-title reveal-el">Tentang Kosbu</h2>
-            <p className="main-paragraph reveal-el">
-              Kosbu adalah sebuah circle persahabatan yang terbentuk secara
-              tidak sengaja semasa kuliah di Universitas YARSI.
-            </p>
-            <p className="sub-paragraph reveal-el">
-              Kelompok ini tercipta karena banyaknya kesamaan di antara para
-              anggotanya, seperti menyukai aliran musik yang sama, hingga
-              pertemuan legendaris &quot;nasi kotak&quot; di masjid kampus YARSI yang
-              menandai titik awal berdirinya kelompok ini.
-            </p>
-            <p className="sub-paragraph reveal-el">
-              Bagi kami, persahabatan bukan sekadar duduk bersama di kelas,
-              melainkan tentang melewati dinamika kehidupan kampus, saling
-              mendukung impian satu sama lain, dan menciptakan ruang bebas di
-              mana kami bisa menjadi diri sendiri sepenuhnya.
-            </p>
-            <p className="sub-paragraph reveal-el">
-              Dari koridor kampus hingga obrolan larut malam, setiap memori
-              yang terukir adalah fondasi kokoh yang membuat ikatan 12 kepala
-              ini tumbuh semakin kuat melampaui waktu kuliah kami.
-            </p>
+            <div className="intro-sticky-content" ref={stickyContentRef}>
+              <h2 className="intro-title reveal-el">Tentang Kosbu</h2>
+              <p className="main-paragraph reveal-el">
+                Kosbu adalah sebuah circle persahabatan yang terbentuk secara
+                tidak sengaja semasa kuliah di Universitas YARSI.
+              </p>
+              <p className="sub-paragraph reveal-el">
+                Kelompok ini tercipta karena banyaknya kesamaan di antara para
+                anggotanya, seperti menyukai aliran musik yang sama, hingga
+                pertemuan legendaris &quot;nasi kotak&quot; di masjid kampus YARSI yang
+                menandai titik awal berdirinya kelompok ini.
+              </p>
+              <p className="sub-paragraph reveal-el">
+                Bagi kami, persahabatan bukan sekadar duduk bersama di kelas,
+                melainkan tentang melewati dinamika kehidupan kampus, saling
+                mendukung impian satu sama lain, dan menciptakan ruang bebas di
+                mana kami bisa menjadi diri sendiri sepenuhnya.
+              </p>
+              <p className="sub-paragraph reveal-el">
+                Dari koridor kampus hingga obrolan larut malam, setiap memori
+                yang terukir adalah fondasi kokoh yang membuat ikatan 12 kepala
+                ini tumbuh semakin kuat melampaui waktu kuliah kami.
+              </p>
+            </div>
           </div>
 
           <div className="intro-right">
