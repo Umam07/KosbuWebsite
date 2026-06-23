@@ -1521,8 +1521,8 @@ body.modal-open {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #0a0a0a;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #000000;
     z-index: 999;
     opacity: 0;
     pointer-events: none;
@@ -1530,7 +1530,7 @@ body.modal-open {
     transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 .full-gallery-overlay.active {
@@ -1554,7 +1554,7 @@ body.modal-open {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding-bottom: 30px;
     margin-bottom: 60px;
 }
@@ -1563,22 +1563,22 @@ body.modal-open {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #000000;
     padding: 12px 24px;
     font-size: 0.9rem;
     font-weight: 600;
     border-radius: 30px;
     cursor: pointer;
     backdrop-filter: blur(5px);
-    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .back-to-home-btn:hover {
-    background: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
     transform: translateX(-4px);
 }
 
@@ -1637,19 +1637,19 @@ body.modal-open {
 .grid-card-img-wrapper {
     width: 100%;
     aspect-ratio: 1.5;
-    background-color: #1a1a1a;
-    border-radius: 12px;
+    background-color: #f5f5f7;
+    border-radius: 16px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
 }
 
 .gallery-grid-card:hover .grid-card-img-wrapper {
     transform: translateY(-8px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
-    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .grid-card-img {
@@ -1736,13 +1736,13 @@ body.modal-open {
     letter-spacing: -0.02em;
     line-height: 1.25;
     margin-bottom: 10px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .grid-card-desc {
     font-size: 0.95rem;
     line-height: 1.5;
-    color: #aaaaaa;
+    color: #666666;
     max-width: 95%;
 }
 
