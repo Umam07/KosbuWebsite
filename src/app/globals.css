@@ -706,10 +706,24 @@ body.dark-theme .member-desc {
 .member-img-wrapper {
     width: 100%;
     aspect-ratio: 0.75; /* Rasio potret elegan 3:4 */
-    background-color: #f2f2f2;
-    border-radius: 6px;
+    background-color: #f5f5f7;
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+body.dark-theme .member-img-wrapper {
+    background-color: #161618;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.member-card:hover .member-img-wrapper {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 62, 108, 0.12);
+}
+body.dark-theme .member-card:hover .member-img-wrapper {
+    box-shadow: 0 20px 40px rgba(255, 62, 108, 0.24);
 }
 
 .member-img {
@@ -717,31 +731,34 @@ body.dark-theme .member-desc {
     height: 100%;
     object-fit: cover;
     filter: grayscale(100%);
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), filter 1s ease;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), filter 1s ease;
 }
 
 /* Hover: Zoom halus + Warna */
 .member-card:hover .member-img {
-    transform: scale(1.04);
+    transform: scale(1.05);
     filter: grayscale(0%);
 }
 
-/* Monospace Index Number Overlay (Reveal on Hover) */
+/* Monospace Index Number Overlay (Glassmorphism) */
 .member-index {
     position: absolute;
     top: 20px;
     left: 20px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 750;
     color: #ffffff;
     z-index: 10;
-    background: #000000;
-    padding: 3px 7px;
-    border-radius: 4px;
+    background: rgba(18, 18, 18, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 4px 10px;
+    border-radius: 30px;
     font-family: monospace;
     opacity: 0;
-    transform: translateY(-8px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(-10px);
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .member-card:hover .member-index {
@@ -756,7 +773,7 @@ body.dark-theme .member-desc {
     padding-top: 15px;
 }
 
-/* Garis tipis di atas nama yang menebal saat hover */
+/* Garis tipis di atas nama yang berubah warna saat hover */
 .member-line {
     position: absolute;
     top: 0;
@@ -764,32 +781,41 @@ body.dark-theme .member-desc {
     width: 100%;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.08);
-    transform-origin: left;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.6s ease;
+    transition: background-color 0.4s ease, height 0.4s ease;
+}
+body.dark-theme .member-line {
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 .member-card:hover .member-line {
-    background-color: #000000;
-    height: 1.5px;
+    background-color: #ff3e6c;
+    height: 2px;
 }
 
 .member-card-name {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-bottom: 6px;
-    color: inherit;
-    transition: opacity 0.3s ease;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    color: #111111;
+    transition: color 0.3s ease;
+}
+body.dark-theme .member-card-name {
+    color: #ffffff;
 }
 
 .member-card:hover .member-card-name {
-    opacity: 0.6; /* Redup tipis untuk estetika premium */
+    color: #ff3e6c;
 }
 
 .member-card-role {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #666666;
     font-weight: 500;
+    transition: color 0.3s ease;
+}
+body.dark-theme .member-card-role {
+    color: #aaaaaa;
 }
 
 /* ========================================== */
@@ -1023,40 +1049,41 @@ body.dark-theme .member-modal-content {
 
 .close-modal-btn {
     position: absolute;
-    top: 20px;
-    right: 25px;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    color: #333333;
+    top: 24px;
+    right: 24px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: #111111;
     cursor: pointer;
     z-index: 10;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .close-modal-btn:hover {
-    background: #000000;
+    background: #ff3e6c;
     color: #ffffff;
-    border-color: #000000;
+    border-color: #ff3e6c;
+    transform: scale(1.08);
 }
 
 body.dark-theme .close-modal-btn {
     background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #ffffff;
 }
 
 body.dark-theme .close-modal-btn:hover {
-    background: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
+    background: #ff3e6c;
+    color: #ffffff;
+    border-color: #ff3e6c;
 }
 
 .modal-body-grid {
@@ -1087,19 +1114,24 @@ body.dark-theme .close-modal-btn:hover {
 
 .modal-info-col h2 {
     font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 8px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin-bottom: 6px;
     line-height: 1.1;
+    color: #111111;
+    transition: color 0.3s ease;
+}
+body.dark-theme .modal-info-col h2 {
+    color: #ffffff;
 }
 
 .modal-role {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #888888;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ff3e6c;
     margin-bottom: 35px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
 }
 
 .modal-detail-items {
@@ -1166,20 +1198,33 @@ body.dark-theme .close-modal-btn:hover {
 }
 
 .game-tag {
-    background-color: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: rgba(255, 62, 108, 0.05);
+    border: 1px solid rgba(255, 62, 108, 0.12);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #333333;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: #ff3e6c;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.game-tag:hover {
+    background-color: #ff3e6c;
+    color: #ffffff;
+    border-color: #ff3e6c;
+    transform: translateY(-2px);
 }
 
 body.dark-theme .game-tag {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #e0e0e0;
+    background-color: rgba(255, 62, 108, 0.08);
+    border: 1px solid rgba(255, 62, 108, 0.18);
+    color: #ff5e82;
+}
+
+body.dark-theme .game-tag:hover {
+    background-color: #ff3e6c;
+    color: #ffffff;
+    border-color: #ff3e6c;
 }
 
 

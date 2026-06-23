@@ -220,18 +220,26 @@ export default function Collective() {
   }, [selectedMember, lenis]);
 
   useGSAP(() => {
-    gsap.from(".reveal-member", {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.08,
-      ease: "power3.out",
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1px)", () => {
+      gsap.from(".reveal-member", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
     });
+
+    return () => {
+      mm.revert();
+    };
   }, { scope: containerRef });
 
   const openDetails = (member: Member) => {
