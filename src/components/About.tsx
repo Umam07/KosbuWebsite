@@ -29,18 +29,20 @@ export default function About() {
       });
     });
 
-    // 2. Staggered fade-up animation for reveal elements
-    gsap.from(".reveal-el", {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.1,
-      ease: "power3.out",
+    // 2. Staggered fade-up animation for reveal elements (all screens)
+    mm.add("(min-width: 1px)", () => {
+      gsap.from(".reveal-el", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
     });
 
     return () => {
