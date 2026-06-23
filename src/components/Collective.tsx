@@ -31,11 +31,11 @@ const MEMBERS: Member[] = [
     name: "Rafly Eryan Azis",
     role: "Ketua Circle / Penyatu Suasana",
     imgUrl:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763775/Rafly_apu6fy.jpg",
     details: {
       birthPlace: "Jakarta",
       birthDate: "12 April 2004",
-      about: "Ketua circle yang selalu punya cara unik untuk menyatukan suasana dan merencanakan nongkrong seru.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Mobile Legends", "Valorant"],
       ig: "@raflyeryan",
     },
@@ -45,11 +45,11 @@ const MEMBERS: Member[] = [
     name: "Muhammad Syafi'ul Umam",
     role: "Andalan Tugas Akademik",
     imgUrl:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763773/MamSky_qy1328.jpg",
     details: {
       birthPlace: "Bekasi",
       birthDate: "28 Oktober 2003",
-      about: "Si jenius akademik yang selalu siap membantu teman-teman saat tugas kuliah menumpuk.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Dota 2", "Chess.com"],
       ig: "@syafiulumam",
     },
@@ -59,11 +59,11 @@ const MEMBERS: Member[] = [
     name: "Kiki Aimar Wicaksana",
     role: "Seksi Keuangan & Bendahara Kas",
     imgUrl:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1764063005/Kiki_kblf1v.jpg",
     details: {
       birthPlace: "Jakarta",
       birthDate: "5 September 2004",
-      about: "Bendahara kas yang teliti dan tegas. Tidak ada rupiah pun yang luput dari pencatatannya.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Genshin Impact", "Stardew Valley"],
       ig: "@kikiaimar",
     },
@@ -73,11 +73,11 @@ const MEMBERS: Member[] = [
     name: "Muhammad Ramadhan Prinada",
     role: "Spesialis Penemu Tempat Nongkrong",
     imgUrl:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600",
+      "https://www.yarsi.ac.id/dpjj/wp-content/uploads/2024/08/DSC05140-2048x1152.jpg",
     details: {
       birthPlace: "Tangerang",
       birthDate: "17 Juni 2003",
-      about: "Petualang kuliner yang tahu semua hidden gems tempat nongkrong asyik di Jakarta.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["PUBG Mobile", "FIFA"],
       ig: "@ramadhanprinada",
     },
@@ -87,11 +87,11 @@ const MEMBERS: Member[] = [
     name: "Muhammad Taufiqulhakim Maha",
     role: "Pengabdi Kamera & Dokumentasi",
     imgUrl:
-      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1751428375/IMG_20230526_114827_je7c6w.jpg",
     details: {
       birthPlace: "Depok",
       birthDate: "22 Januari 2004",
-      about: "Pengabdi kamera yang selalu mendokumentasikan setiap momen berharga circle.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Animal Crossing", "Minecraft"],
       ig: "@taufiqulhakim",
     },
@@ -101,11 +101,11 @@ const MEMBERS: Member[] = [
     name: "Rafi Daniswara Anggoro Putra",
     role: "Teman Mabar Game Tiap Malam",
     imgUrl:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763774/Denis_ohil78.jpg",
     details: {
       birthPlace: "Jakarta",
       birthDate: "9 Agustus 2003",
-      about: "Gamer sejati yang selalu online tiap malam, siap menemani mabar game apa saja.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Valorant", "CS:GO"],
       ig: "@rafidaniswara",
     },
@@ -115,11 +115,11 @@ const MEMBERS: Member[] = [
     name: "Muhammad Isa Agiya Ashari",
     role: "Kurator Musik & Playlist Nongkrong",
     imgUrl:
-      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1764063129/isa_lcwn9n.jpg",
     details: {
       birthPlace: "Bogor",
       birthDate: "14 Februari 2004",
-      about: "Musik enthusiast yang bertugas mengurasi playlist lagu seru saat nongkrong bareng.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Roblox", "Osu!"],
       ig: "@isaagiya",
     },
@@ -133,7 +133,7 @@ const MEMBERS: Member[] = [
     details: {
       birthPlace: "Jakarta",
       birthDate: "30 November 2003",
-      about: "Supir andalan berlisensi yang paling sabar membawa mobil saat trip dadakan ke luar kota.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Assetto Corsa", "GTA V"],
       ig: "@andhikaard",
     },
@@ -143,11 +143,11 @@ const MEMBERS: Member[] = [
     name: "Wily Ahmad Fauzan",
     role: "Update Gosip Kampus Terkini",
     imgUrl:
-      "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1764062074/Willy_Gaming_tpg45k.jpg",
     details: {
       birthPlace: "Bandung",
       birthDate: "8 Juli 2004",
-      about: "Pembawa info terhangat di kampus yang selalu membuat suasana obrolan menjadi ramai.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["The Sims 4", "Among Us"],
       ig: "@wilyahmad",
     },
@@ -157,11 +157,11 @@ const MEMBERS: Member[] = [
     name: "Hilal Rizqi Akbar",
     role: "Pembuat Rencana Dadakan",
     imgUrl:
-      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=600",
+      "https://www.yarsi.ac.id/dpjj/wp-content/uploads/2024/08/DSC05134-2048x1152.jpg",
     details: {
       birthPlace: "Jakarta",
       birthDate: "19 Mei 2003",
-      about: "Inisiator rencana trip dadakan. Moto hidupnya: 'Rencana yang mendadak adalah yang paling jadi.'",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Mobile Legends", "Apex Legends"],
       ig: "@hilalrizqi",
     },
@@ -171,11 +171,11 @@ const MEMBERS: Member[] = [
     name: "Hafizh Vito Pratomo",
     role: "Tempat Curhat & Pendengar Baik",
     imgUrl:
-      "https://images.unsplash.com/photo-1513956589380-bad6acb9b9d4?auto=format&fit=crop&q=80&w=600",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1764063276/IMG_20240606_163924_enzzqn.jpg",
     details: {
       birthPlace: "Tangerang Selatan",
       birthDate: "3 Maret 2004",
-      about: "Pendengar yang baik tempat curhat segala keluh kesah kehidupan perkuliahan maupun asmara.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Candy Crush", "Hay Day"],
       ig: "@hafizhvito",
     },
@@ -189,7 +189,7 @@ const MEMBERS: Member[] = [
     details: {
       birthPlace: "Jakarta",
       birthDate: "15 November 2003",
-      about: "Sang pemburu nasi kotak masjid sejati yang selalu hafal jadwal acara keagamaan kampus.",
+      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       favGames: ["Clash of Clans", "FIFA"],
       ig: "@bernandoidayah",
     },
