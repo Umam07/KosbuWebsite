@@ -54,7 +54,12 @@ export default function About() {
         <div className="intro-grid">
           <div className="intro-left" id="pinnedColumn">
             <div className="intro-sticky-content" ref={stickyContentRef}>
-              <h2 className="intro-title reveal-el">Tentang Kosbu</h2>
+              <div className="intro-title-wrapper reveal-el">
+                <div className="intro-accent-line"></div>
+                <h2 className="intro-title-giant">
+                  Tentang<br />Kosbu
+                </h2>
+              </div>
               <p className="main-paragraph reveal-el">
                 Kosbu adalah sebuah circle persahabatan yang terbentuk secara
                 tidak sengaja semasa kuliah di Universitas YARSI.
