@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -117,16 +117,25 @@ export default function Memories() {
   const [showGallery, setShowGallery] = useState(false);
   const lenis = useLenis();
 
+  useEffect(() => {
+    if (activeMemory || showGallery) {
+      document.body.classList.add("modal-open");
+      lenis?.stop();
+    } else {
+      document.body.classList.remove("modal-open");
+      lenis?.start();
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [activeMemory, showGallery, lenis]);
+
   const openGallery = () => {
     setShowGallery(true);
-    lenis?.stop();
-    document.body.classList.add("modal-open");
   };
 
   const closeGallery = () => {
     setShowGallery(false);
-    lenis?.start();
-    document.body.classList.remove("modal-open");
   };
 
   const formatIndex = (index: number) => {

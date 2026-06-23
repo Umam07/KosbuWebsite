@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useLenis } from "lenis/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -197,6 +198,20 @@ const MEMBERS: Member[] = [
 export default function Collective() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (selectedMember) {
+      document.body.classList.add("modal-open");
+      lenis?.stop();
+    } else {
+      document.body.classList.remove("modal-open");
+      lenis?.start();
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [selectedMember, lenis]);
 
   useGSAP(() => {
     gsap.from(".reveal-member", {

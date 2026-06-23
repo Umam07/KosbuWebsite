@@ -42,11 +42,22 @@ header {
     z-index: 100;
     opacity: 0;
     pointer-events: none;
-    transition: color 0.6s ease;
+    transition: color 0.6s ease, opacity 0.4s ease;
 }
 
 header.active {
     pointer-events: auto;
+}
+
+/* Fix overlapping modal layouts & header overlay */
+body.modal-open header {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.modal-open .works-section,
+body.modal-open .members-section {
+    z-index: 1000 !important;
 }
 
 .header-logo {
