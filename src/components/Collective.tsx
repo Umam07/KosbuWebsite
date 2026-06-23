@@ -31,7 +31,7 @@ const MEMBERS: Member[] = [
     name: "Rafly Eryan Azis",
     role: "Lorem Ipsum",
     imgUrl:
-      "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763775/Rafly_apu6fy.jpg",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1782197001/IMG-20240315-WA0088_zuj3s7.jpg",
     details: {
       birthPlace: "Jakarta",
       birthDate: "12 April 2004",

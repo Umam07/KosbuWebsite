@@ -25,7 +25,7 @@ const MEMORIES: MemoryItem[] = [
     description:
       "Tempat takdir mempertemukan 12 kepala dengan latar belakang berbeda untuk memulai perjalanan perkuliahan bersama.",
     imgUrl:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1751976459/IMG_1120_syylfi.jpg",
   },
   {
     id: "nasi-kotak",
@@ -43,7 +43,7 @@ const MEMORIES: MemoryItem[] = [
     description:
       "Obrolan santai, tawa lepas, dan petualangan pertama menyusuri gemerlapnya malam ibukota untuk melepas penat tugas.",
     imgUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1782197206/IMG-20250313-WA0077_afnywc.jpg",
   },
   {
     id: "wisuda",
@@ -61,7 +61,7 @@ const MEMORIES: MemoryItem[] = [
     description:
       "Kehangatan bulan suci di kosan. Mulai dari memasak sahur bareng hingga berburu takjil di jalanan Jakarta.",
     imgUrl:
-      "https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&q=80&w=1000",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1782196895/IMG-20250321-WA0114_ldpfhd.jpg",
   },
   {
     id: "trip-puncak",
@@ -70,7 +70,7 @@ const MEMORIES: MemoryItem[] = [
     description:
       "Melarikan diri sejenak dari hiruk-pikuk tugas kuliah ke dinginnya udara Puncak, menikmati malam dingin dengan api unggun.",
     imgUrl:
-      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1000",
+      "https://res.cloudinary.com/dr57ribr5/image/upload/v1751456758/IMG_1548_loq6bs.jpg",
   },
   {
     id: "begadang-tugas",
