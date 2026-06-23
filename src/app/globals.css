@@ -370,7 +370,14 @@ body.modal-open header {
 
 .intro-left {
     width: 100%;
-    will-change: transform;
+}
+
+@media (min-width: 901px) {
+    .intro-left {
+        position: sticky;
+        top: 120px;
+        align-self: start;
+    }
 }
 
 .intro-title {

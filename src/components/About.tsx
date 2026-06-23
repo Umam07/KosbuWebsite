@@ -11,20 +11,7 @@ export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // 1. Pinned Column for Desktop Screen
-    const mm = gsap.matchMedia();
-    
-    mm.add("(min-width: 901px)", () => {
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        pin: "#pinnedColumn",
-        start: "top 120px",
-        end: "bottom bottom",
-        pinSpacing: false,
-      });
-    });
-
-    // 2. Staggered fade-up animation for reveal elements
+    // Staggered fade-up animation for reveal elements
     gsap.from(".reveal-el", {
       scrollTrigger: {
         trigger: containerRef.current,
@@ -37,10 +24,6 @@ export default function About() {
       stagger: 0.1,
       ease: "power3.out",
     });
-
-    return () => {
-      mm.revert();
-    };
   }, { scope: containerRef });
 
   return (
