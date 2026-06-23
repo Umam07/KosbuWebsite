@@ -29,7 +29,7 @@ const MEMBERS: Member[] = [
   {
     index: "01",
     name: "Rafly Eryan Azis",
-    role: "Ketua Circle / Penyatu Suasana",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763775/Rafly_apu6fy.jpg",
     details: {
@@ -43,7 +43,7 @@ const MEMBERS: Member[] = [
   {
     index: "02",
     name: "Muhammad Syafi'ul Umam",
-    role: "Andalan Tugas Akademik",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763773/MamSky_qy1328.jpg",
     details: {
@@ -57,7 +57,7 @@ const MEMBERS: Member[] = [
   {
     index: "03",
     name: "Kiki Aimar Wicaksana",
-    role: "Seksi Keuangan & Bendahara Kas",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1764063005/Kiki_kblf1v.jpg",
     details: {
@@ -71,7 +71,7 @@ const MEMBERS: Member[] = [
   {
     index: "04",
     name: "Muhammad Ramadhan Prinada",
-    role: "Spesialis Penemu Tempat Nongkrong",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://www.yarsi.ac.id/dpjj/wp-content/uploads/2024/08/DSC05140-2048x1152.jpg",
     details: {
@@ -85,7 +85,7 @@ const MEMBERS: Member[] = [
   {
     index: "05",
     name: "Muhammad Taufiqulhakim Maha",
-    role: "Pengabdi Kamera & Dokumentasi",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1751428375/IMG_20230526_114827_je7c6w.jpg",
     details: {
@@ -99,7 +99,7 @@ const MEMBERS: Member[] = [
   {
     index: "06",
     name: "Rafi Daniswara Anggoro Putra",
-    role: "Teman Mabar Game Tiap Malam",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1766763774/Denis_ohil78.jpg",
     details: {
@@ -113,7 +113,7 @@ const MEMBERS: Member[] = [
   {
     index: "07",
     name: "Muhammad Isa Agiya Ashari",
-    role: "Kurator Musik & Playlist Nongkrong",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1764063129/isa_lcwn9n.jpg",
     details: {
@@ -127,7 +127,7 @@ const MEMBERS: Member[] = [
   {
     index: "08",
     name: "Andhika Ardianto",
-    role: "Supir Andalan Tiap Road Trip",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=600",
     details: {
@@ -141,7 +141,7 @@ const MEMBERS: Member[] = [
   {
     index: "09",
     name: "Wily Ahmad Fauzan",
-    role: "Update Gosip Kampus Terkini",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1764062074/Willy_Gaming_tpg45k.jpg",
     details: {
@@ -155,7 +155,7 @@ const MEMBERS: Member[] = [
   {
     index: "10",
     name: "Hilal Rizqi Akbar",
-    role: "Pembuat Rencana Dadakan",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://www.yarsi.ac.id/dpjj/wp-content/uploads/2024/08/DSC05134-2048x1152.jpg",
     details: {
@@ -169,7 +169,7 @@ const MEMBERS: Member[] = [
   {
     index: "11",
     name: "Hafizh Vito Pratomo",
-    role: "Tempat Curhat & Pendengar Baik",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://res.cloudinary.com/dr57ribr5/image/upload/v1764063276/IMG_20240606_163924_enzzqn.jpg",
     details: {
@@ -183,7 +183,7 @@ const MEMBERS: Member[] = [
   {
     index: "12",
     name: "Bernando Idayah",
-    role: "Seksi Konsumsi & Nasi Kotak",
+    role: "Lorem Ipsum",
     imgUrl:
       "https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?auto=format&fit=crop&q=80&w=600",
     details: {
