@@ -317,6 +317,7 @@ export default function Hero() {
                 className="control-btn skip-btn"
                 id="rewindBtn"
                 title="Mundur 5 Detik"
+                aria-label="Mundur 5 detik"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleSkip(-5);
@@ -340,6 +341,8 @@ export default function Hero() {
               <button
                 className="control-btn play-btn-circle"
                 id="playPauseBtn"
+                title={isPlaying ? "Jeda video" : "Putar video"}
+                aria-label={isPlaying ? "Jeda video" : "Putar video"}
                 onClick={(e) => {
                   e.stopPropagation();
                   togglePlayState();
@@ -378,6 +381,7 @@ export default function Hero() {
                 className="control-btn skip-btn"
                 id="forwardBtn"
                 title="Maju 5 Detik"
+                aria-label="Maju 5 detik"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleSkip(5);

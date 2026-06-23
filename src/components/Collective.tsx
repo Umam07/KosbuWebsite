@@ -101,7 +101,7 @@ const MEMBERS: Member[] = [
     name: "Rafi Daniswara Anggoro Putra",
     role: "Teman Mabar Game Tiap Malam",
     imgUrl:
-      "https://images.unsplash.com/photo-1504257400762-971f9e9961d8?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600",
     details: {
       birthPlace: "Jakarta",
       birthDate: "9 Agustus 2003",
@@ -185,7 +185,7 @@ const MEMBERS: Member[] = [
     name: "Bernando Idayah",
     role: "Seksi Konsumsi & Nasi Kotak",
     imgUrl:
-      "https://images.unsplash.com/photo-1489980508314-941910ded1f4?auto=format&fit=crop&q=80&w=600",
+      "https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?auto=format&fit=crop&q=80&w=600",
     details: {
       birthPlace: "Jakarta",
       birthDate: "15 November 2003",
